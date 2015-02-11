@@ -11,6 +11,39 @@
                        
         </article>
     </p>
+    <div>
+        <h3>Code Snippet</h3>
+        <p>
+            <pre>
+                if(navigator.onLine)<br />
+                {<br />
+                    console.log("online");<br />
+                    status.className = 'online';<br />
+                    status.state = 'online';<br />
+                    state.innerHTML = 'online';<br />
+                }<br />
+                else<br />
+                {<br />
+                    console.log("offline");<br />
+                    status.className = 'offline';<br />
+                    status.state = 'offline'<br />
+                    state.innerHTML = 'offline';<br />
+                }<br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            HTML5 now can help determine if a person is online or offline. The navigator object 
+            retrieves the status of network connection which can be used to determine if a person is connected 
+            to the network. In the above example, we are setting the status of the div to Online/Offline.
+            We have added event listeners to capture the status.
+        </p>
+        <h3>Source code</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/HTML/statuscheck.html" target="_blank"> View Source</a></p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+    </div>
     
     <script>
        

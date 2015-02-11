@@ -7,6 +7,42 @@
     <p> Click here to get your location </p>
     <button id="location" onclick="getlocation()">Click</button>
     <p id="map"></p>
+    <div>
+        <h3>Code Snippet</h3>
+        <p>
+            <pre>
+           function showMap(position) {<br />
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);<br />
+            var options =<br />
+                {
+                    zoom: 15,<br />
+                    center: latlng,<br />
+                    mapTypeControl: false,<br />
+                    navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },<br />
+                    mapTypeId: google.maps.MapTypeId.ROADMAP<br />
+                };<br />
+            map = new google.maps.Map(document.getElementById("mapcanvas"), options);<br />
+            var marker = new google.maps.Marker({<br />
+                position: latlng,<br />
+                map: map<br />
+            });<br />
+        }<br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            Click to check where you are!!
+            This is a simple example demonstrating how to get a location using HTML5. 
+            We use the navigation element to check if the Geolocation is supported. If yes we retrieve the current 
+            co-ordinates and plot it on a map using the google maps API.If not we simply return with and error.
+        </p>
+        <h3>Source code</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/HTML/geolocator.html" target="_blank"> View Source</a></p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+        <p><a href="http://diveintohtml5.info/geolocation.html" target="_blank">Dive into HTML</a></p>
+    </div>
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <script>
        function getlocation()
