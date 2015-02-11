@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Check Online</title>
+</head>
+<body>
+    <p>
+        <article>
+            checking network status: <div id="status">checking...</div>
+            <div id="state" style="width:200px;height:200px;"></div>
+                       
+        </article>
+    </p>
+    
+    <script>
+       
+        var status = document.getElementById("status");
+            var state = document.getElementById("state");
+
+            function checkonline()
+            {                
+                if(navigator.onLine)
+                {
+                    console.log("online");
+                    status.className = 'online';
+                    status.state = 'online';
+                    state.innerHTML = 'online';
+                }
+                else
+                {
+                    console.log("offline");
+                    status.className = 'offline';
+                    status.state = 'offline'
+                    state.innerHTML = 'offline';
+                }
+                
+            }
+            window.addEventListener('online', checkonline(event));            
+            window.addEventListener('offline', checkonline(event));
+           
+       </script>
+</body>
+</html>

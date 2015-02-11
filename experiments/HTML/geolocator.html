@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTML5 Geolocation experiment</title>
+</head>
+<body>
+    <p> Click here to get your location </p>
+    <button id="location" onclick="getlocation()">Click</button>
+    <p id="map"></p>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script>
+       function getlocation()
+        {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showMap, showError, {maximumAge:60000});
+            }else
+            {
+                showError('No Geolocation support.');
+            }
+        }
+
+        function showMap(position) {
+
+           var mapcanvas = document.createElement('div');
+            mapcanvas.id = 'mapcanvas';
+            mapcanvas.style.height = '500px';
+            mapcanvas.style.width = '500px';
+            document.querySelector('#map').appendChild(mapcanvas);
+
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var options =
+                {
+                    zoom: 15,
+                    center: latlng,
+                    mapTypeControl: false,
+                    navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+            map = new google.maps.Map(document.getElementById("mapcanvas"), options);
+
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+            });
+        }
+
+        function showError(message)
+        {
+            myMap.innerHTML = "Error showing map:" + message;
+        }
+    </script>
+</body>
+</html>

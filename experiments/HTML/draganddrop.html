@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTML Login Form</title>
+    
+</head>
+<body>
+<div id="drop" ondrop="drop(event)" ondragover="dragOver(event)" style="border:1px solid #000;width: 400px;height:100px;"></div>
+    <img id="drag_image" src="../../images/jfitz_cards/b1fh.gif" draggable="true" ondragstart="drag(event)" />
+    <script>
+    function dragOver(e) {
+        e.preventDefault();
+    }
+
+    function drag(e) {
+        e.dataTransfer.setData("text", e.target.id);
+
+    }
+    function drop(e) {
+        e.preventDefault();
+        var data = e.dataTransfer.getData("text");
+        e.target.appendChild(document.getElementById(data));
+    }
+    </script>
+
+</body>
+</html>

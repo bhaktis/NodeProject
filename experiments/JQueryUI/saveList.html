@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Local Storage</title>
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+</head>
+<body>
+    <form>
+        <table>
+            <tr>
+                <td>
+                    Name :
+                </td>
+                <td>
+                    <input type="text" id="name" autofocus />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ID :
+                </td>
+                <td>
+                    <input type="text" id="id" />
+                </td>
+            </tr>
+        </table>
+    </form>    
+    <button id="save">Save</button>
+    <button id="load">Load</button>
+    <script>
+        $(function () {
+            $("#save").click(save);
+          
+        });
+        
+        function save() {
+            var array = [];
+            var name = $("#name");
+            var id = $("#id");
+            console.log(name.val());
+            console.log(id.val());
+            var pObj = {
+                name: name.val(),
+                id: id.val()
+            };
+            array.push(pObj);
+            var counter = localStorage.getItem("persons");
+            console.log(counter);
+            if (counter == null) {
+                localStorage.setItem("persons", JSON.stringify(array));
+            } else {
+                var persons = JSON.parse(counter);
+                console.log(persons);
+
+                for (var p in persons) {
+                    var person = persons[p];
+                    array.push(person);
+                }
+                localStorage.setItem("persons", JSON.stringify(array));
+            }
+        }
+    </script>
+</body>
+</html>

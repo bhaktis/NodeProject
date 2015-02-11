@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hover function</title>
+    <style>
+        #bounce{
+width:50px;
+height:50px;
+background:#808080;
+        }
+    </style>
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+   
+</head>
+<body>
+    
+    <div id="bounce"></div>    
+    <script>    
+    $(function () {
+        $("#bounce").hover(fadeit);
+    });
+    function fadeit(event)
+    {
+        var target = $(event.target);
+        $(target).toggle("fade");
+    }
+    </script>
+
+</body>
+</html>
