@@ -8,7 +8,7 @@
     <style>
         .resize{
             border: 1px solid;
-                       
+            overflow:hidden;                   
         }
     </style>
     <script>
@@ -26,5 +26,29 @@
 <body>
      <h1 class="hello"> Resizable and editable textbox</h1>
     <p id="textbox" class="resize" contenteditable="true">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+    <div>
+        <h3>Code Snippet</h3>
+        <p>
+            <pre>
+           $(function () { <br />
+            $(".resize").resizable({ <br />
+                grid: [20, 20], <br />
+                handles: "n, e ,s ,w", <br />
+                animate: true,   <br />                    
+            });<br />
+        })<br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            This experiment demonstrates the resizable and editable property for a paragraph
+            or a text box. The resizable function of Jquery allows to resize a element or class of elements
+            with or without overflow.
+        </p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+    </div>
 </body>
 </html>

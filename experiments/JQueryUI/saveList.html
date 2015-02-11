@@ -26,15 +26,48 @@
                 </td>
             </tr>
         </table>
-    </form>    
-    <button id="save">Save</button>
-    <button id="load">Load</button>
+    </form>
+    <button id="save">Save</button>    
+    <div>
+        <h3>Code Snippet</h3>
+        <p>Save
+            <pre>
+            var counter = localStorage.getItem("persons"); <br />
+            console.log(counter); <br />
+            if (counter == null) { <br />
+                localStorage.setItem("persons", JSON.stringify(array));<br />
+            } else {<br />
+                var persons = JSON.parse(counter);<br />
+                console.log(persons);<br />                
+                for (var p in persons) {<br />
+                    var person = persons[p];<br />
+                    array.push(person);<br />
+                }<br />
+                localStorage.setItem("persons", JSON.stringify(array));<br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            This experiment demonstrates the local cache feature of HTML5 using Jquery.
+            HTML5 allows to store objects or collection of objects in a session like variable with is
+            maintained in the browser cache.The local storage object is used to store retrieve objects.
+            In this experiment, we take the name of person and id and on click of save button create and object of this
+            information and store it in local storage under a key value.
+            Every time a new person is added , the values are appended to the existing list of persons.
+            Please check the next experiment for Onload demo.
+        </p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+    </div>
+
     <script>
         $(function () {
             $("#save").click(save);
-          
+
         });
-        
+
         function save() {
             var array = [];
             var name = $("#name");

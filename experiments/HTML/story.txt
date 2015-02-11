@@ -1,0 +1,7 @@
+﻿../../story/whatisnext.htm?../experiments/HTML/story.txt		       What is Next?
+draganddrop.html															Drag and drop
+embedvideo.html                                                             Embedded video
+form.html                                                                   Form 
+geolocator.html                                                             Geolocator
+statuscheck.html                                                            Status check
+

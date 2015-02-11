@@ -30,6 +30,34 @@
     <ul class="result"></ul>
     <button id="save">Save</button>
     <button id="load">Load</button>
+    <div>
+        <h3>Code Snippet</h3>
+        <p> Onload
+            <pre>
+            var counter = localStorage.getItem("persons");<br />
+            console.log(counter);<br />
+            var per = JSON.parse(counter);<br />
+            $('ul').empty();<br />
+            for (var p in per) {<br />
+                var person = per[p];<br />
+                $('< li />', { html: person.id + person.name }).appendTo('ul.result');<br />
+            }<br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            This experiment demonstrates the local cache feature of HTML5 using Jquery. 
+            HTML5 allows to store objects or collection of objects in a session like variable with is 
+            maintained in the browser cache.The local storage object is used to store retrieve objects. 
+            In the previous experiment we have seen how to store and object. This experiment will demonstrate how
+            to access these object array using the key and load them for usage. We will display the list of persons 
+            added in a list.
+        </p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+    </div>
     <script>
         $(function () {
             $("#save").click(save);
@@ -42,8 +70,7 @@
             $('ul').empty();
             for (var p in per) {
                 var person = per[p];
-
-                $('<li />', { html: person.id + "    " + person.name }).appendTo('ul.result');
+                $('<li />', { html: person.id +": "+ person.name }).appendTo('ul.result');
             }
 
         }

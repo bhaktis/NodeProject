@@ -4,8 +4,8 @@
     <title>Click function</title>
     <style>
         #bounce {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             background: #808080;
         }
     </style>
@@ -20,16 +20,40 @@
     <script>
 
         $(function () {
-            $("#bounce").click(fadeit);
+            $("#bounce").click(explode);
             });
        
-    function fadeit(event)
+    function explode(event)
     {
-        alert("hi");
+        //alert("hi");
         var target = $(event.target);
         $(target).toggle("explode");
     }
     </script>
+    <div>
+        <h3>Code Snippet</h3>
+        <p>
+            <pre>
+            $(function () {<br />
+            $("#bounce").click(explode);<br />
+            });<br />
 
+            function explode(event)<br />
+              {<br />
+                  var target = $(event.target);<br />
+                 $(target).toggle("fade");<br />
+              } <br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            This experiment the explode effect in Jquery on click on an element.
+            The jquery function grabs hold of the click function for the div and
+            calling a javascript function which gives the explode effect for the div.
+        </p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+    </div>
 </body>
 </html>

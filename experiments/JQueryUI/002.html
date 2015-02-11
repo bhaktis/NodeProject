@@ -3,29 +3,52 @@
 <head>
     <title>Hover function</title>
     <style>
-        #bounce{
-width:50px;
-height:50px;
-background:#808080;
+        #bounce {
+            width: 50px;
+            height: 50px;
+            background: #808080;
         }
     </style>
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="js/jquery.js"></script>
     <script src="js/jquery-ui.js"></script>
-   
+
 </head>
 <body>
-    
-    <div id="bounce"></div>    
-    <script>    
-    $(function () {
-        $("#bounce").hover(fadeit);
-    });
-    function fadeit(event)
-    {
-        var target = $(event.target);
-        $(target).toggle("fade");
-    }
+
+    <div id="bounce"></div>
+    <div>
+        <h3>Code Snippet</h3>
+        <p>
+            <pre>
+          $(function () {<br />
+        $("#bounce").hover(fadeit);<br />
+    });<br />
+    function fadeit(event)<br />
+    {<br />
+        var target = $(event.target);<br />
+        $(target).toggle("fade");<br />
+    } <br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            This experiment the fading effect in Jquery on hovering on an element.
+            The jquery function grabs hold of the hover function for the div and 
+            calling a javascript function which toggles between fade in and fade out.
+        </p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+    </div>
+    <script>
+        $(function () {
+            $("#bounce").hover(fadeit);
+        });
+        function fadeit(event) {
+            var target = $(event.target);
+            $(target).toggle("fade");
+        }
     </script>
 
 </body>
