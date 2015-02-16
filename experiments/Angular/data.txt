@@ -1,0 +1,14 @@
+﻿[
+{
+"name":"India",
+"locale":"IND"
+},
+{
+"name":"United States",
+"locale":"USA"
+},
+{
+"name":"Australia",
+"locale":"AUS"
+}
+]

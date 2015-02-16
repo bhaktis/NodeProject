@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="angular.min.js"></script>
+    <script src="appmodule.js"></script>
+</head>
+<body>
+    <h2>Validation using Angular</h2>
+    <div ng-app="mainApp" ng-controller="studentController">
+        <h3>About the experiment</h3>
+        <p>Below the a form with validation for blank fields</p>
+        <form name="form">
+            <table>
+                <tr>
+                    <td>Enter first name:</td>
+                    <td>
+                        <input name="firstname" type="text" ng-model="student.firstname" required />
+                        <span style="color:red" ng-show="form.firstname.$dirty && form.firstname.$invalid">
+                            <span ng-show="form.firstname.$error.required"> Name is required</span>
+                        </span><br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enter last name:</td>
+                    <td><input type="text" ng-model="student.lastname" /><br /><br /></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        {{student.fullname()}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button ng-click="student.reset()">Reset</button>
+                    </td>
+                    <td>
+                        <button ng-disabled="student.firstname.$dirty && student.firstname.$invalid"
+                                ng-click="submit()">
+                            Submit
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      <!--  <div ng-include="'includethis.html'"></div>-->
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+    <hr />
+    <h3>Description</h3>
+    <p>The above experiment demonstrates validation for input fields using Angular.The example maintains the angular js application
+    in a seperate file.This is done by declaring the ng-app field for the div and calling the controller of the module 
+    using this field.The $dirty and $error states are used to validate data and track the errors.These states are shown using the ng-show 
+    field in the span tag. The validation are provided for empty fields.</p>
+    <hr />
+    <h3>Code snippet</h3>
+    <pre>
+        < input name="firstname" type="text" ng-model="student.firstname" required />
+        < span style="color:red" ng-show="form.firstname.$dirty && form.firstname.$invalid">
+        < span ng-show="form.firstname.$error.required"> Name is required</ span>
+                        </ span><br /><br />
+</pre>
+    <hr />
+    <h3>View Source</h3>
+    <p><a href="../../fileview/Default.aspx?~/experiments/Angular/seperateappmodule.html" target="_blank"> validation.html</a></p>
+    <hr />
+    <h3>References</h3>
+    <p><a href="http://tutorialspoint.com/angularjs/" target="_blank">Angular JS tutorials point</a></p>
+</body>
+</html>

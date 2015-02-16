@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+   
+</head>
+<body>
+    <div ng-app="" ng-controller="CountryController">
+        
+        <p>List of Countries with locale:</p>
+        
+        <table border="1">
+            <tr ng-repeat="country in countries">
+               <td>
+                {{country.name}}</td>
+                <td>
+                {{country.locale}}</td>
+            </tr>
+        </table>
+    </div> 
+    <script>
+        function CountryController($scope, $http) {
+            var url = "data.txt";
+            $http.get(url).success(function (response) {
+                $scope.countries = response;
+            });
+        }
+    </script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script> 
+</body>
+</html>

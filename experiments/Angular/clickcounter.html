@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <h1>Counter and Hide / Show Buttons</h1>
+    <div ng-app="">
+        <h2>About experiment</h2>
+        <p>Click the counter to increment it!! Show / Hide buttons !!</p>
+        <table border="0">
+            <tr>
+                <td>
+                    <p> Total click : {{clickCounter}}</p>
+                </td>
+                <td>
+                    <button ng-click="clickCounter = clickCounter +1">Click Me!</button> <br />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" ng-model="hide"/>Hide Image
+                </td>
+                <td>
+                    <img src="image1.jpg" height="250" width="250" ng-hide="hide" /><br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" ng-model="show" />Show image
+                </td>
+                <td>
+                    <img src="image1.jpg" height="250" width="250" ng-show="show" /><br />
+                </td>
+            </tr>            
+        </table>
+        <hr />
+        <h3>Description</h3>
+        <p>
+            The above experiment demonstrates the use ng-click, ng-show and ng-hide.
+            A counter is implemented using ng-click. The value of the counter increments on every click 
+            and the value is displayed on UI.ng-show and ng-hide are used to show/hide tags.The show/hide model bound with 
+            the checkbox.On checking the checkbox the images are shown / hidden
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <pre>
+           < input type="checkbox" ng-model="show" />Show Button
+           < img src="image1.jpg" height="250" width="250" ng-show="show" /><br />
+             </pre>
+        <hr />
+        <h3>View Source</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/Angular/clickcounter.html" target="_blank"> clickcounter.html</a></p>
+        <hr />
+        <h3>References</h3>
+        <p><a href="http://tutorialspoint.com/angularjs/" target="_blank">Angular JS tutorials point</a></p>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
+</head>
+<body>
+    <h2>Embedd HTML page in using Angular</h2>
+    <div ng-app="mainApp">
+        <h3>About the experiment</h3>
+        <p>Clicking on the below link will place and HTML page in the below div</p>
+        <p><a href="#viewCountry">Click here</a></p>
+        <div ng-view> </div>
+        <script type="text/ng-template" id="viewCountry.htm">
+            {{message}}
+        </script>
+        <hr />
+        <h3>Description</h3>
+        <p>
+            Angular js has feature called RouteProvider using which you can embedd and HTML page
+            in the current HTML page.For this, we have to configure the config of the mainApp
+            and provide the template URl and the controller for click of the link.We also need
+            to specify the default URL where the page will be directed incase there are no matched found.
+            The page will be viewed in the div for which we have specified the ng-view directive.
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <pre>
+                        var mainApp = angular.module("mainApp", ['ngRoute']);
+                mainApp.config(['$routeProvider', function ($routeProvider) {
+                    $routeProvider.when('/viewCountry', {
+                        templateUrl: 'viewCountry.html',
+                        controller: 'ViewCountries'
+                    }).otherwise({
+                        redirectTo: 'viewCountry.html'
+                    });
+                }]);
+             </pre>
+        <hr />
+        <h3>View Source</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/Angular/routeprovider.html" target="_blank"> routeprovider.html</a></p>
+        <hr />
+        <h3>References</h3>
+        <p><a href="http://tutorialspoint.com/angularjs/" target="_blank">Angular JS tutorials point</a></p>
+        <script>
+            var mainApp = angular.module("mainApp", ['ngRoute']);
+            mainApp.config(['$routeProvider', function ($routeProvider) {
+                $routeProvider.when('/viewCountry', {
+                    templateUrl: 'viewCountry.html',
+                    controller: 'ViewCountries'
+                }).otherwise({
+                    redirectTo: 'viewCountry.html'
+                });
+            }]);
+
+            mainApp.controller('ViewCountries', function ($scope) {
+                $scope.message = "This displays the list of countries";
+                var url = "data.txt";
+                $http.get(url).success(function (response) {
+                    $scope.countries = response;
+                });
+            });
+        </script>
+
+
+    </div>
+</body>
+</html>

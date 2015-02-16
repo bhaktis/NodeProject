@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="" ng-init="rollno=1; books=3; costperbook=20; student={firstname:'Nidhi',lastname:'Kurup'};marks=[80,90,75,73,60]">
+        <p>Hello {{student.firstname + ""+ student.lastname}}!</p>
+        <p>Expense on books : {{books*costperbook}} Rs</p>
+        <p>RollNo : {{rollno}}</p>
+        <p>Marks at third position : {{marks[3]}}</p>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+    <h1>Drop down with JSON data</h1>
+    <div ng-app="" ng-controller="CountryController">
+        <h2>About the experiment</h2>
+        <p>The countries are populated from JSON file</p>
+        <select ng-model="country" ng-options="country.name for country in countries"></select>
+        <p>
+            You have selected :
+            <br /> Country Name:  {{country.name}}
+            <br /> Country Code: {{country.locale}}
+            <br />
+            <button ng-click="save()">Save</button>
+            {{name}}
+        </p>
+    </div>
+    <hr />
+    <h2>Code snippet</h2>
+    <pre>
+        function CountryController($scope, $http) {
+            var url = "data.txt";
+            $scope.countrylist = null;
+            $scope.countries = [];
+            $http.get(url).success(function (response) {
+                $scope.countries = response;
+            });
+        }
+</pre>
+    <hr />
+    <h2>
+        Description
+    </h2>
+    <p>This experiment shows how to populate the drop down with JSON data stored in seperate files. 
+    We have a list of countries and the country code saved in seperate file called data.txt. 
+    A data model is bound to the select clause.The controller parses the data from the JSON file and assignes it
+    to the countries model. This dropdown is populated with the name of countries from this data model.
+    When we select a country , we are displaying the value of the selected country below.</p>
+    <h2>View Source</h2>
+    <p><a href="../../fileview/Default.aspx?~/experiments/Angular/dropdown.html" target="_blank"> DropdownwithJSONdata</a></p>
+    <hr />
+    <h2>References</h2>
+    <p><a href="http://en.wikipedia.org/wiki/AngularJS" target="_blank"> Wikipedia</a></p>
+    <p><a href="http://tutorialspoint.com/angularjs/" target="_blank">Angular JS tutorials point</a></p>
+
+    <script>
+        function CountryController($scope, $http) {
+            var url = "data.txt";
+            $scope.name = null;
+            $scope.countries = [];
+            $http.get(url).success(function (response) {
+                $scope.countries = response;
+            });    
+                     
+            $scope.save = function () {
+                localStorage.setItem('countrydata', JSON.stringify($scope.country.name));
+                $scope.name = 'data :' + localStorage.getItem('countrydata');
+            }
+        }
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+</body>
+</html>
