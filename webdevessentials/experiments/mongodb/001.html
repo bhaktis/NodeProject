@@ -10,12 +10,12 @@
     </style>
 </head>
 <body>
-    <h2>Connect MongoDB and Node</h2>
+    <h2>Connect MongoDB and Node and creating schema</h2>
     <div>
         <h3>About the experiment</h3>
         <p>
             In the next few set of experiments we will be working on MongoDB and integrating it with Node js.
-            In this experiment we will see how to integrate Node js + MongoDb.                    
+            In this experiment we will see how to integrate Node js + MongoDb and create a schema in mongoDB.                    
         </p>
          <img src="../images/1a.png" class="image" />
         <img src="../images/1b.png" class="image" />
@@ -28,21 +28,30 @@
             The Connection string used to connect to the MongoDb server can either be a locahost server or a link to some other 
             server. We have configured mongoDb on the open shift server. For this, We need to install a MongoDb on open shift
             upon which you will receive the server link and the credentials.
+            The new developer schema is created mongoose.Schema command where the fields of developer are defined.
+            This schema is used to create a developer model.
         </p>
         <hr />
         <h3>Code snippet</h3>
         <p>Connecting to the server</p>
         <pre>
-                              var mongoose = require('mongoose');
+            var mongoose = require('mongoose');
             var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610';
-mongoose.connect(connectionString);  
+                                   mongoose.connect(connectionString);  
+
+            var DeveloperSchema = new mongoose.Schema({
+                                             firstName: String,
+                                             lastName:String
+                                                     }, { collection: "Developer" });
+            var DeveloperModel = mongoose.model("Developer", DeveloperSchema);
+
          </pre>
         <hr />
         <h3>Link to the open shift server</h3>
         <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/index.html" target="_blank"> Open Shift Link</a></p>
         <hr />
         <h3>GitHub</h3>
-        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/index.html" target="_blank"> Open Shift Link</a></p>
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610" target="_blank"> GitHub</a></p>
         <hr />
         
         <h3>References</h3>

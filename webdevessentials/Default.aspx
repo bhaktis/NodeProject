@@ -116,7 +116,7 @@
                             <a href="story/index.htm" target="_blank">Story Utility</a>
                         </li>
                         <li>
-                            <a href="story/index.htm?../experiments/story.txt" target="_blank">Experiments</a>
+                            <a href="story/index.htm?../experiments/story.txt">Experiments</a>
                         </li>
                         <li>
                             <a href="https://github.com/bhaktis/Web-development-CS5610" target="_blank">GitHub</a>

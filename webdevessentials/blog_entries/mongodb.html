@@ -4,6 +4,39 @@
     <title></title>
 </head>
 <body>
+    <p>
+        The experiment demonstrates connecting a node server to a MongoDb server.To be able to connect to the mongoDb server
+        we need to install the Mangoose utility on the node server. After Install Mongoose we will be able to connect to
+        the MOngoDb server.
+        The Connection string used to connect to the MongoDb server can either be a locahost server or a link to some other
+        server. We have configured mongoDb on the open shift server. For this, We need to install a MongoDb on open shift
+        upon which you will receive the server link and the credentials.
+        The new developer schema is created mongoose.Schema command where the fields of developer are defined.
+        This schema is used to create a developer model.
 
+        Save function:
+        Save function is a asyn call that adds the new data to the developer collection.
+        Inside this function call we define another functions which will be called on completion of save with the error
+        data if any and the resultset after adding the new record. This new resulset is send to the node controller
+        which updates the view.
+
+        Update function:
+        Update function is a asyn call that updates data in the developer collection.
+        The update function take some identifier for the record to be updated and the new values .
+        Inside this function call we define another functions which will be called on completion of update with the error
+        data if any and the resultset after updating the record. This new resulset is send to the node controller
+        which updates the view.
+
+        Find:
+        find function returns all the records from the developer collection.
+        Inside this function call we define another functions which will be called on completion of find with the error
+        data if any and the resultset. This new resulset is send to the node controller which updates the view.
+
+        Delete:
+        remove() function is a asyn call that deletes data from the developer collection.
+        Inside this function call we define another functions which will be called on completion of remove with the error
+        data if any and the resultset with the record deleted. This new resulset is send to the node controller
+        which updates the view.
+    </p>
 </body>
 </html>
