@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image{
+            width:430px;
+            height:430px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Page</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            The page show an data adding functionality to the server using angularjs and node js. 
+            The developer data consists of the array of developer details (firstName, lastName) stored at the server. 
+            New developer is adding to this list from UI .                    
+        </p>
+         <img src="../images/1a.png" class="image" />
+        <img src="../images/1b.png" class="image" />
+        <hr />
+        <h3>Description</h3>
+        <p>
+           The experiment demonstrates how to add new developer records to data stored in server using angular js. 
+            We use the http post method to call a function on the server side and pass the developer object to be added. 
+            The server method updated the data set and return the new data set to show in the view.
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Call to the server</p>
+        <pre>
+         $scope.add = function (developer) {
+        console.log(developer);
+        $http.post("/developers", developer).
+        success(function (response) {
+            $scope.developers = response;
+        });
+    };                     
+         </pre>
+        <hr />
+        <h3>Link to the open shift server</h3>
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/index.html" target="_blank"> Open Shift Link</a></p>
+        <hr />
+        <h3>View Source</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/ng-Routing/001.html" target="_blank"> Code file</a></p>
+        <p><a href="../../fileview/Default.aspx?~/experiments/ng-Routing/js/001.js" target="_blank"> Script file</a></p>
+        <hr />
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+    </div>
+</body>
+</html>

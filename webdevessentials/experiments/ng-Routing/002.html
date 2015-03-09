@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Routing example</title>
+    <script src="../js/angular.min.js"></script>
+    <script src="js/003.js"></script>
+    <script src="../js/angular-route.min.js"></script>
+</head>
+<body ng-app="HomeApp">
+    <h2>Login Page</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            The below page is a login page for the user using Angular routing.The valid user will have access to their
+            profile page.This experiment allows user to logout from an application<br />
+            Credentials:
+            Username : nids Password : nids
+            Username : renu Password : renu
+        </p>
+        <div ng-controller="UserLogin" style="border:1px solid;">
+            <nav style="border:1px solid;padding:5px;">
+                <a href="#home">Home</a>|
+                <a href="#/profile/{{currentUser.username}}" ng-show="currentUser">Profile</a>
+
+                <form style="float:right">
+                    <div ng-hide="currentUser">
+                        <input type="text" ng-model="username" />
+                        <input type="password" ng-model="password" />
+                        <button type="button" ng-click="login();">Sign in</button>
+                    </div>
+                    <div ng-show="currentUser">
+                        <a href="#/home" ng-click="logout();">Logout</a>
+                    </div>
+                </form>
+            </nav>
+            <div ng-view> </div>
+        </div>
+        <hr />
+        <h3>Description</h3>
+        <p>
+            Angular js has feature called RouteProvider using which you can embedd and HTML page
+            in the current HTML page.For this, we have to configure the config of the mainApp
+            and provide the template URl and the controller for click of the link.We also need
+            to specify the default URL where the page will be directed incase there are no matched found.
+            The page will be viewed in the div for which we have specified the ng-view directive.
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <pre>
+                        var mainApp = angular.module("mainApp", ['ngRoute']);
+                mainApp.config(['$routeProvider', function ($routeProvider) {
+                    $routeProvider.when('/viewCountry', {
+                        templateUrl: 'viewCountry.html',
+                        controller: 'ViewCountries'
+                    }).otherwise({
+                        redirectTo: 'viewCountry.html'
+                    });
+                }]);
+             </pre>
+        <hr />
+        <h3>View Source</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/Angular/routeprovider.html" target="_blank"> routeprovider.html</a></p>
+        <hr />
+        <h3>References</h3>
+        <p><a href="http://tutorialspoint.com/angularjs/" target="_blank">Angular JS tutorials point</a></p>
+    </div>
+
+</body>
+</html>

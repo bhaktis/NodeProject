@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTML Login Form</title>
+
+</head>
+<body>
+    <div id="drop" ondrop="drop(event)" ondragover="dragOver(event)" style="border:1px solid #000;width: 400px;height:100px;"></div>
+    <img id="drag_image" src="../../images/jfitz_cards/b1fh.gif" draggable="true" ondragstart="drag(event)" />
+
+    <div>
+        <h3>Code Snippet</h3>
+        <p>
+            <pre>
+                function dragOver(e) {<br />
+                e.preventDefault();<br />
+                }<br />
+                function drag(e) {<br />
+                e.dataTransfer.setData("text", e.target.id);<br />
+                }<br />
+                function drop(e) {<br />
+                e.preventDefault();<br />
+                var data = e.dataTransfer.getData("text");<br />
+                e.target.appendChild(document.getElementById(data));<br />
+                }<br />
+            </pre>
+        </p>
+
+        <h3>Description</h3>
+        <p>
+            Drag the Div in the box.
+            This is a simple example of the drag and drop feature of HTML5.
+            You can drag the box which in the container and drop it right there.This feature can be used in a scenario like
+            shopping cart where a person and drag the required items in the shopping basket.
+            Code : The ondrag start function is called on the div element which is to be dragged and the draggable property is set to true.
+            The drag and drop function is called on the element where the item will be dragged and dropped.
+        </p>
+        <h3>References</h3>
+        <p><a href="http://www.w3schools.com/" target="_blank">W3 Schools</a></p>
+    </div>
+
+    <script>
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            e.dataTransfer.setData("text", e.target.id);
+
+        }
+        function drop(e) {
+            e.preventDefault();
+            var data = e.dataTransfer.getData("text");
+            e.target.appendChild(document.getElementById(data));
+        }
+    </script>
+
+</body>
+</html>

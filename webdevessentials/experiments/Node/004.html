@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image{
+            width:430px;
+            height:430px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Page</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            The page will fetch the data from the server and display it using angularjs. 
+            The developer data consists of the array of developer details (firstName, lastName) stored at the server. 
+           We fetch the data using the get http request and bind it to the view.                   
+        </p>
+         <img src="../images/1a.png" class="image" />       
+        <hr />
+        <h3>Description</h3>
+        <p>
+           This experiment demonstrates how to fetch data from a node js server and bind it to the 
+           ng-view attribute. The controller fetches the data using the http get request and binds it to the view 
+           in the angular application. 
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Call to the server</p>
+        <pre>
+                                  $http.get("/developers").success(function (response) {
+        $scope.developers = response;
+    });
+         </pre>
+        <hr />
+        <h3>Link to the open shift server</h3>
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/index.html" target="_blank"> Open Shift Link</a></p>
+        
+        <hr />
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+    </div>
+</body>
+</html>
