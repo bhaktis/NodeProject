@@ -1,0 +1,22 @@
+<html>
+<head>
+<link href="css/bootstrap.css" rel="stylesheet" />
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/loginapp.js"></script>
+<script src="views/login/login.js"></script>
+<script src="views/register/register.js"></script>
+</head>
+<body ng-app="PassportApp">
+<nav ng-controller="NavCtrl">
+<a href="#home">Home</a> |
+<a href="#profile">Profile</a> |
+<a href="#register">Register</a> |
+<a href="#login">Login</a> |
+<a href="#logout" ng-click="logout();">Logout</a>
+</nav>
+<div ng-view></div>
+</body>
+</html>

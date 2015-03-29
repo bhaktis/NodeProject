@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="DeveloperApp">    
+        <div class="container" ng-controller="DeveloperController">  
+            <h1> CRUD operations using Angular, Node Js and MongoDB</h1>   
+                 <p>This is an implementation of a basic CRUD operations using Angular,Node and MongoDB. </p>
+
+            <p> In the 1st experiment we will set-up the connection string used to connect MongoDb with Node js and 
+            setting up Open Shift for the same. </p>
+            <p>2nd, 3rd, 4th and 5th experiments will Insert, delete, select and update operations performed on data 
+            stored in MongoDB</p>
+
+            Following operation are performed on the data:
+            <br />1. Get data  - Using the http get method - Select Command
+            <br />2. Add field  -  using post method of HTTP - Save Command
+            <br />3. Edit fields - Edit table fields using the put method of http - Update Command
+            <br />4. Delete data -  Using the delete method - Remove command
+            
+             <br/>
+            <br/>
+            <br />
+           <table class="table table-striped" align="center">
+               <thead>
+                   <tr>
+                       <th>
+                           <input ng-model="developer.firstName" class="form-control" />
+                       </th>
+                       <th>
+                           <input ng-model="developer.lastName" class="form-control" />
+                       </th>
+                       <th>
+                           <button class="btn btn-primary pull-right" ng-click="save(developer)">
+                               <span class="glyphicon glyphicon-ok"></span>
+                           </button>
+                       </th>
+                       <th>
+                           <button class="btn btn-success pull-right" ng-click="add(developer)">
+                               <span class="glyphicon glyphicon-plus"></span>
+                           </button>
+                       </th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr ng-repeat="developer in developers | filter: developer">
+                       <td>{{developer.firstName}}</td>
+                       <td>{{developer.lastName}}</td>
+                       <td>
+                           <button ng-click="select(developer._id);" class="btn btn-warning pull-right">
+                               <span class="glyphicon glyphicon-pencil"></span>
+                           </button>
+                       </td>
+                       <td>
+                           <button ng-click="remove(developer._id);" class="btn btn-danger pull-right">
+                               <span class="glyphicon glyphicon-remove"></span>
+                           </button>
+                       </td>
+                   </tr>
+               </tbody>
+           </table>
+        </div>      
+</body>
+</html>
