@@ -5,3 +5,4 @@
 ../story/index.htm?../experiments/ng-Routing/story.txt                         NG - Routing Experiments
 ../story/index.htm?../experiments/node/story.txt							     Node Experiments
 ../story/index.htm?../experiments/mongodb/story.txt			             MongoDB Experiments
+../story/index.htm?../experiments/PassportJS/story.txt			             PassportJS Experiments

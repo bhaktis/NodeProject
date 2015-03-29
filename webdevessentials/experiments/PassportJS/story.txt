@@ -1,0 +1,6 @@
+﻿../../story/whatisnext.htm?../experiments/PassportJS/story.txt		       What is Next?															
+http://nodeapp-cs5610nodejs.rhcloud.com/login.html                                                           Authenticating Login
+http://nodeapp-cs5610nodejs.rhcloud.com/login.html                                                          Logout
+http://nodeapp-cs5610nodejs.rhcloud.com/login.html                                                           Register new user
+http://nodeapp-cs5610nodejs.rhcloud.com/login.html                                                           Authenticating access to profile page
+http://nodeapp-cs5610nodejs.rhcloud.com/login.html                                                          Retrieving and adding data from mongoDB
