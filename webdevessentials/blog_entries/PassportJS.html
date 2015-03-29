@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    This week we will learn how to authenticate user and maintain session variables for node application using Passport JS and cookie parser modules of Node js.
+
+    <h1> Login Page</h1>
+    This page show how to authenticate a user login using Passport js. Passport js is an authentication middleware provided by node js.It can be used to authenticate requests like login and validate the user.If the validation succeeds the request and the user data is send to the server.
+
+    The experiment demonstrates how to authenticate a user using Passport JS.Passport JS inserts itself between user request and the server function. The request is intercepted by the passport JS on its way to server. We check if the user is an authenticated user by creating a local strategy. If yes , then passport adds the user in the request and forwards the request to the server and cookies are set. If no then it throws an error in the done function. The serialize and deserialize function are used to interpret cookies.
+
+    <h1>Logout</h1>
+    This page show how to logout a valid user in session. On logout call to the server. The request is logged out and the cookies are deleted from the server. Also , the user is redirected to the home page.
+
+    The experiment demonstrates how to logout a valid user in session. On logout call to the server. The request is logged out and the cookies are deleted from the server. Also , the user is redirected to the home page.
+
+    <h1> Register</h1>
+    For registration of new user we need to add the user record to the database. On registration user will view the profile page and the logged into the account.
+
+    On entering the username and password, the password is validated and the request is send to the server. the server will save the user to the database. On success , the cookies for the user is logged in cookies are set and user is redirected to the profile page with the user data.
+
+    <h1>Profile</h1>
+    A profile page is shown to a logged in user. We are restricting access to the profile page. If there is no active session on clicking the profile the visitor is redirected to the login page.
+
+    A profile page is shown only to a authenticated logged in user. We resolve access to profile by asking the server to check access to the page.Server authenticates the request and send the user or string indicating no user logged in.The client receives user we show the profile page with the user details else redirect to the login page.
+
+    <h1>mongoDB</h1>
+    Finally , We add the mongoDb to the server code. The user login is validated with entries in db and register add new user to the database.
+
+    User records maintainted in MongoDB. The user login authentcation request validates user with the database records. On registration new user is added to the mongoDB. On successfull insert user is logged in.
+</body>
+</html>
