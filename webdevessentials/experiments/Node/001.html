@@ -10,43 +10,35 @@
     </style>
 </head>
 <body>
-    <h2>Login Page</h2>
+    <h2>Fetch data from the server</h2>
     <div>
         <h3>About the experiment</h3>
         <p>
-            The page show an data adding functionality to the server using angularjs and node js. 
+            The page will fetch the data from the server and display it using angularjs. 
             The developer data consists of the array of developer details (firstName, lastName) stored at the server. 
-            New developer is adding to this list from UI .                    
+           We fetch the data using the get http request and bind it to the view.                   
         </p>
-         <img src="../images/1a.png" class="image" />
-        <img src="../images/1b.png" class="image" />
+         <img src="../images/1a.png" class="image" />       
         <hr />
         <h3>Description</h3>
         <p>
-           The experiment demonstrates how to add new developer records to data stored in server using angular js. 
-            We use the http post method to call a function on the server side and pass the developer object to be added. 
-            The server method updated the data set and return the new data set to show in the view.
+           This experiment demonstrates how to fetch data from a node js server and bind it to the 
+           ng-view attribute. The controller fetches the data using the http get request and binds it to the view 
+           in the angular application. 
         </p>
         <hr />
         <h3>Code snippet</h3>
         <p>Call to the server</p>
         <pre>
-         $scope.add = function (developer) {
-        console.log(developer);
-        $http.post("/developers", developer).
-        success(function (response) {
-            $scope.developers = response;
-        });
-    };                     
+                                  $http.get("/developers").success(function (response) {
+        $scope.developers = response;
+    });
          </pre>
-        <hr />
-        
+        <hr />       
         <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/index.html" target="_blank"> Open Shift Link</a></p>
         <hr />
         <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/node_app" target="_blank">GitHub Link </a></p>
-
         <hr />
-        
         <h3>References</h3>
         <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
     </div>

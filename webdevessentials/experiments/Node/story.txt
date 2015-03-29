@@ -1,5 +1,5 @@
 ﻿../../story/whatisnext.htm?../experiments/node/story.txt		       What is Next?
-003.html															Fetch data from the server
-001.html                                                            Add new data
-002.html                                                            Edit data
+001.html															Fetch data from the server
+002.html                                                            Add new data
+003.html                                                            Edit data
 004.html                                                            Remove data
