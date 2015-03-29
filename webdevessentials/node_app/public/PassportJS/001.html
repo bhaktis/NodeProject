@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image{
+            width:430px;
+            height:430px;
+        }
+    </style>    
+</head>
+<body>
+    <h2>Authenticating Login Page</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            This page show how to authenticate a user login using Passport js.
+            Passport js is an authentication middleware provided by node js. 
+            It can be used to authenticate requests like login and validate the user. 
+            If the validation succeeds the request and the user data is send to the server.                    
+        </p>
+        <hr/>
+        <h3>Header Page</h3>
+        <iframe src="../login.html" width="500" height="250"></iframe>
+        <hr />
+        <h3>Description</h3>
+        <p>
+           The experiment demonstrates how to authenticate a user using Passport JS. 
+           Passport JS inserts itself between user request and the server function. 
+           The request is intercepted by the passport JS on its way to server. 
+           We check if the user is an authenticated user by creating a local strategy. If yes , then passport adds the user in the request
+           and forwards the request to the server and cookies are set. If no then it throws an error in the done function.
+           The serialize and deserialize function are used to interpret cookies.                       
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Local Strategy</p>
+        <pre>
+        passport.use(new LocalStrategy(
+		function(username,password,done){
+			UserModel.findOne({username: username, password: password}, function(err,user){
+				if(user)
+					{
+					return done(null, user);
+					}
+				return done(null, false, {message: 'Unable to login'});
+			});			
+		}));            
+         </pre>         
+        <hr />
+       <h3>Source code</h3>      
+        <p><a href="../js/loginapp.js" target="_blank"> app.js</a></p>
+           
+        <hr />
+        
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/node_app" target="_blank">GitHub Link </a></p>
+        
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/login.html" target="_blank">Link to the open shift server</p></h3>     
+    </div>
+</body>
+</html>

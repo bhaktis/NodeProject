@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image{
+            width:430px;
+            height:430px;
+        }
+    </style>    
+</head>
+<body>
+    <h2>Authenticating access to the profile page</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            A profile page is shown to a logged in user. We are restricting access to 
+            the profile page. If there is no active session on clicking the profile the visitor is 
+            redirected to the login page.                    
+        </p>
+        <hr/>
+        <h3>Header Page</h3>
+        <iframe src="../login.html" width="500" height="250"></iframe>
+        <hr />
+        <h3>Description</h3>
+        <p>
+           A profile page is shown only to a authenticated logged in user. 
+           We resolve access to profile by asking the server to check access to the page. 
+           Server authenticates the request and send the user or string indicating no user logged in.
+           The client receives user we show the profile page with the user details else redirect to the 
+           login page.         
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Check login function at client side</p>
+        <pre>
+       var checkLoggedin  = function($q, $timeout, $http, $location, $rootScope)
+{
+	var deferred = $q.defer();
+	$http.get('/loggedin').success(function(user){
+		$rootScope.errorMessage = null;
+		//User is authenticated
+		if(user !== '0')
+			{
+			$rootScope.currentUser = user;
+			deferred.resolve();
+			}
+		// User is not authenticated 
+		else
+			{
+			$rootScope.errorMessage = 'You need to log in.';
+			deferred.reject();
+			$location.url('/login');
+			}
+	});
+	return deferred.promise;
+	};     
+         </pre>         
+        <hr />
+       <h3>Source code</h3>      
+        <p><a href="../js/loginapp.js" target="_blank"> app.js</a></p>
+           
+        <hr />
+        
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/node_app" target="_blank">GitHub Link </a></p>
+        
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/login.html" target="_blank">Link to the open shift server</p></h3>     
+    </div>
+</body>
+</html>

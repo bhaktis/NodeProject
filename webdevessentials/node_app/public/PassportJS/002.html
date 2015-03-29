@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image{
+            width:430px;
+            height:430px;
+        }
+    </style>    
+</head>
+<body>
+    <h2>Logout Page</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            This page show how to logout a valid user in session. 
+            On logout call to the server. The request is logged out and the cookies are deleted 
+            from the server. Also , the user is redirected to the home page.                    
+        </p>
+        <hr/>
+        <h3>Header Page</h3>
+        <iframe src="../login.html" width="500" height="250"></iframe>
+        <hr />
+        <h3>Description</h3>
+        <p>
+           The experiment demonstrates how to logout a valid user in session. 
+            On logout call to the server. The request is logged out and the cookies are deleted 
+            from the server. Also , the user is redirected to the home page.                        
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Server post request</p>
+        <pre>
+        app.post("/logout", function(req, res){
+	req.logout();
+	res.send(200);
+	});    
+         </pre>         
+        <hr />
+       <h3>Source code</h3>      
+        <p><a href="../js/loginapp.js" target="_blank"> app.js</a></p>           
+        <hr />
+        
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/node_app" target="_blank">GitHub Link </a></p>
+        
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/login.html" target="_blank">Link to the open shift server</p></h3>     
+    </div>
+</body>
+</html>

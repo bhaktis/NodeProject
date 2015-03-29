@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image{
+            width:430px;
+            height:430px;
+        }
+    </style>    
+</head>
+<body>
+    <h2>Register new user</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            For registration of new user we need to add the user record to the database. 
+            On registration user will view the profile page and the logged into the account.                    
+        </p>
+        <hr/>
+        <h3>Header Page</h3>
+        <iframe src="../login.html" width="500" height="250"></iframe>
+        <hr />
+        <h3>Description</h3>
+        <p>
+           On entering the username and password, the password is validated and the request is send to the
+           server. the server will save the user to the database. On success , the cookies for the user is logged in 
+           cookies are set and user is redirected to the profile page with the user data.                      
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Register function at the server</p>
+        <pre>
+        app.post("/register", function(req, res){
+	var newUser = new UserModel(req.body);
+	newUser.roles = ['student'];	
+	newUser.save(function(err,user){
+	
+	req.login(user, function(err){
+	if(err)	{return next(err);}
+	res.json(user);
+	});	
+	
+	});
+});        
+         </pre>         
+        <hr />
+       <h3>Source code</h3>      
+        <p><a href="../js/loginapp.js" target="_blank"> app.js</a></p>
+           
+        <hr />
+        
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/node_app" target="_blank">GitHub Link </a></p>
+        
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/login.html" target="_blank">Link to the open shift server</p></h3>     
+    </div>
+</body>
+</html>
