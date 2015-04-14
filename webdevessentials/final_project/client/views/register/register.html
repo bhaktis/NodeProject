@@ -1,0 +1,54 @@
+<h1> Register</h1>
+<script>
+$("#passwordMatchError").hide();
+$("#confirmPassword").blur(function(){
+	console.log("Inside confirm password");
+	var pass = document.getElementById('password').value;
+	var confirmPass = this.value;
+	console.log(document.getElementById('password').value);
+	console.log(this.value);
+	if(pass == confirmPass)
+		{
+		console.log("password match");
+		$("#passwordMatchError").hide();
+		}
+	else
+		{
+		$("#passwordMatchError").show();
+				
+		}
+});
+</script>
+<style>
+.error{
+color:red;
+}
+</style>
+<form name="regForm">
+<table>
+<tr>
+<td>User name <span class="error">*</span></td>
+<td><input ng-model="user.username" required/><br/></td>
+</tr>
+<tr>
+<td>Password <span class="error">*</span></td>
+<td><input ng-model="user.password" type="password" id="password" required/></td>
+</tr>
+<tr>
+<td> Confirm Password <span class="error">*</span></td>
+<td><input type="password" id="confirmPassword" data-match="user.password" ng-model="user.password2" required />
+<span class="error" id="passwordMatchError"> Passwords do not match!</span>
+</tr>
+
+<tr>
+<td> Email<span class="error">*</span></td>
+<td><input type="email" name="input" ng-model="user.email" required>
+<span class="error" ng-show="regForm.input.$error.email">Please enter a valid email !!</span>
+
+</td>
+</tr>
+<tr>
+<td><button ng-click="register(user)">Register</button></td>
+</tr>
+</table>
+</form>
