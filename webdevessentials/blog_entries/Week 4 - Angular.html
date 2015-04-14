@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <p>
+        Drop Down with JSON data
+        This experiment shows how to populate the drop down with JSON data stored in seperate files.
+        We have a list of countries and the country code saved in seperate file called data.txt.
+        A data model is bound to the select clause.The controller parses the data from the JSON file and assignes it
+        to the countries model. This dropdown is populated with the name of countries from this data model.
+        When we select a country , we are displaying the value of the selected country below.
+
+        Counter and hide /show images
+        The above experiment demonstrates the use ng-click, ng-show and ng-hide.
+        A counter is implemented using ng-click. The value of the counter increments on every click
+        and the value is displayed on UI.ng-show and ng-hide are used to show/hide tags.The show/hide model bound with
+        the checkbox.On checking the checkbox the images are shown / hidden
+
+        Controller in angular JS
+        This experiment shows how to define a controller that manipulates the model.
+        The first name and last name input field are bound too the field of student model.
+        We have defined a student controller which works on student. The controller has a function
+        fullname that computes the full name of the student. This function is called in the div where the controller scope is defined
+        where we print the full name of the student.
+
+        Validation in Angular JS
+        The above experiment demonstrates validation for input fields using Angular.The example maintains the angular js application
+        in a seperate file.This is done by declaring the ng-app field for the div and calling the controller of the module
+        using this field.The $dirty and $error states are used to validate data and track the errors.These states are shown using the ng-show
+        field in the span tag. The validation are provided for empty fields.
+
+        Routing in Angular
+        Angular js has feature called RouteProvider using which you can embedd and HTML page
+        in the current HTML page.For this, we have to configure the config of the mainApp
+        and provide the template URl and the controller for click of the link.We also need
+        to specify the default URL where the page will be directed incase there are no matched found.
+        The page will be viewed in the div for which we have specified the ng-view directive.
+    </p>
+</body>
+</html>
