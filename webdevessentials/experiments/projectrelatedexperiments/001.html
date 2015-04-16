@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image{
+            width:430px;
+            height:430px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Understanding Amazon and ebay Product API's</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            The web application user can shop for products using Amazon and eBay API's.
+            The user can shop from amazon and ebay. 
+            The product information is retrieved from the Amazon and eBay API's.            
+                               
+        </p>
+           
+        <hr />
+        <h3>Description</h3>
+        <p>
+           Amazon API's :
+          Prerequisites for consuming the amazon API: Need to install amazon API key,
+          shared key and associate key. For this, we need to create an affiliate account
+          with amazon.
+          For consuming amazon api's we need to install the amazon-aws package which 
+          makes available the amazon API's for node.Using this client we
+          create an instance of the product advertisement client providing the 
+          amazon API key, shared key and the associate key.
+           
+          Ebay API's :
+          Prerequisities : Create an affiliate account with eBay.
+          Install the node rest client and make a rest API call to the ebay service with the 
+          API key as parameter.The web service returns data in JSON format.          
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Amazon Client</p>
+        <pre>
+        ec2 = aws.createEC2Client("AKIAIPJMAQNDYSJYRVUA", "oItVCSoe5LqKTKQBfysUij/LonsXF+BkRFEIyRGX");
+var prodAdv = aws.createProdAdvClient("AKIAIPJMAQNDYSJYRVUA", "oItVCSoe5LqKTKQBfysUij/LonsXF+BkRFEIyRGX", "cs5-20");
+                                  
+                                           </pre>
+                                           <p>Ebay Client</p>
+        <pre> var Client = require('node-rest-client').Client;
+ 
+ client = new Client();
+  
+ app.get('/ebay', function(req, res){
+ // direct way 
+ client.get(url, function(data){
+             // parsed response body as js object 
+             console.log(data);
+             // raw response 
+           //  console.log(response);
+            res.send(data); 
+         });
+ });                                          </pre>
+        <hr />       
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/ebay.html" target="_blank"> Ebay Link</a></p>
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/amazon.html" target="_blank"> Amazon Link</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/node_app" target="_blank">GitHub Link </a></p>
+        <hr />
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+         <p><a href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_Intro_AAWS.html" target="_blank"> Amazon Product Advertising API</a></p>
+         <p><a href="http://developer.ebay.com/DevZone/finding/HowTo/GettingStarted_JS_NV_JSON/GettingStarted_JS_NV_JSON.html" target="_blank">eBay API</a></p>
+    </div>
+</body>
+</html>

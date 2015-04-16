@@ -29,6 +29,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -41,9 +44,9 @@
         </p>
         <h3>Description</h3>
                 <p>
-                   The session in ASP.NET can be maintained using following functions
-                    Add: session["objectName"] = object;
-                    Delete : Session.Remove("objName");
+                   The session in ASP.NET can be maintained using following functions<br />
+                    Add: session["objectName"] = object;<br />
+                    Delete : Session.Remove("objName");<br />
                     The asp.net remember the session on setting it and can be retrieved at any time.
 
                 </p>

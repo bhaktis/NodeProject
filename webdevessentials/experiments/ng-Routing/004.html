@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Displaying different data using Angular JS in different views</title>
+    <script src="../js/angular.js"></script>
+    <script src="js/004.js"></script>
+    <script src="../js/angular-route.js"></script>
+    <script src="views/Books/book.js"></script>
+    <script src="views/Food/food.js"></script>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <script src="../js/bootstrap.js"></script>
+</head>
+<body ng-app="DataApp">
+    <div>
+        <h2>Angular Routing With controllers</h2>
+        <h3>About the experiment</h3>
+        <p>
+            The routing functionality added by this step is provided by angular in the ngRoute module, which is distributed separately from the core Angular framework.
+
+            The below experiment we see how to add multiple views to 
+            a Single page application. 
+            Each of these views will be assigned a seperate controller
+            which manage the data for the page.
+        </p>
+        <hr />
+        <div ng-controller="DataController">
+
+            <a href="#books">Books</a>
+            <a href="#food">Food Items</a><br />
+            <ng-view></ng-view>
+        </div>
+
+        <hr />
+        <h3>Description</h3>
+        <p>
+            Angular js has feature called RouteProvider using which you can add multiple views in an HTML page.
+            For this, we have to configure the config of the mainApp
+            and provide the template URl and the controller for click of the link.We also need
+            to specify the default URL where the page will be directed incase there are no matched found.
+            The page will be viewed in the div for which we have specified the ng-view directive.
+
+            In addition, the controller is specified for each view. This controller will create and manage the data model 
+            for the respective views.
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <pre>
+            app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.
+        when('/books', {
+            templateUrl: 'views/Books/book.html',
+            controller: 'BookCtrl'
+        }).
+        when('/food', {
+            templateUrl: 'views/Food/food.html',
+            controller:'FoodCtrl'
+        }).
+    otherwise({
+        redirectTo: 'view/books.html'
+    });
+}]);                                               
+             </pre>
+        <hr />       
+        <p><a href="../../fileview/Default.aspx?~/experiments/ng-Routing/004.html" target="_blank">View Source</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/experiments" target="_blank">GitHub Link </a></p>
+        <hr />
+        <h3>References</h3>
+        <p><a href="http://tutorialspoint.com/angularjs/" target="_blank">Angular JS tutorials point</a></p>
+        <p><a href="http://tech-blog.maddyzone.com/javascript/use-multiple-ng-view-single-page">Tech Blog</a></p>
+    </div>
+</body>
+</html>

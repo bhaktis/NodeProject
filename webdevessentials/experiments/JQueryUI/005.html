@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTML5 Geolocation experiment</title>
+    <style>
+        .weather{
+            height:100px;
+            width:100px;
+            border:1px solid;
+        }
+    </style>
+</head>
+<body>
+    <p> Click here to get your location </p>
+    <button id="location" onclick="getlocation()">Click</button>
+    <p id="map"></p>
+    <div id="weather">
+       
+    </div>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script src="js/jquery.js"></script>
+    <script>
+        function getlocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showMap, showError, { maximumAge: 60000 });
+            } else {
+                showError('No Geolocation support.');
+            }
+        }
+
+        function showMap(position) {
+
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            console.log(lat + ":" + lon);
+
+            var request = new XMLHttpRequest();
+
+            var method = 'GET';
+            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&sensor=true';
+            var async = true;
+            var zip;
+            request.open(method, url, async);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var data = JSON.parse(request.responseText);
+                    var address = data.results[0];
+                    var co = address["address_components"];
+                    zip = co[co.length - 1].long_name;
+
+                    var geoAPI = 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + '&APPID=dcbb8bc4498d3f230bf68e83b1889c0f';
+
+                    $.getJSON(geoAPI, function (r) {
+
+                        if (r != null) {
+                            console.log("Found data" + r['name']);
+                            var city = r["name"];
+                            var desc = r["weather"].description;
+                            var temp = "Temperature: " + r["main"].temp;
+                           
+                            console.log(city);
+                            console.log(desc);
+                            console.log(temp);
+                            document.getElementById('weather').innerHTML = "<b>" + city + "</b>" + "<br/>" + desc + temp;
+                        }
+                    });
+                    console.log("Location:" + address.formatted_address + "location ID:" + zip);
+                }
+            };
+            request.send();
+
+
+
+            var mapcanvas = document.createElement('div');
+            mapcanvas.id = 'mapcanvas';
+            mapcanvas.style.height = '500px';
+            mapcanvas.style.width = '500px';
+            document.querySelector('#map').appendChild(mapcanvas);
+
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var options =
+                {
+                    zoom: 15,
+                    center: latlng,
+                    mapTypeControl: false,
+                    navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+            map = new google.maps.Map(document.getElementById("mapcanvas"), options);
+
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+            });
+        }
+
+        function showError(message) {
+            myMap.innerHTML = "Error showing map:" + message;
+        }
+    </script>
+    
+</body>
+</html>

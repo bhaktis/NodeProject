@@ -187,6 +187,59 @@ app.put("/developers/:id", function (req, res) {
 //    res.send('hello world');
 //});
 
+var util = require('util');
+var aws = require("aws-lib");
+
+ec2 = aws.createEC2Client("AKIAIPJMAQNDYSJYRVUA", "oItVCSoe5LqKTKQBfysUij/LonsXF+BkRFEIyRGX");
+var prodAdv = aws.createProdAdvClient("AKIAIPJMAQNDYSJYRVUA", "oItVCSoe5LqKTKQBfysUij/LonsXF+BkRFEIyRGX", "cs5-20");
+
+var options = {SearchIndex: "Books", Keywords: "Javascript", ResponseGroup: "ItemAttributes,Offers,Images"};
+
+app.get('/books', function(req, res){
+prodAdv.call("ItemSearch", options, function(err, result) {
+  console.log(result);
+  
+//  var image = {ItemId: "1118907442", ResponseGroup:"Images"};
+//  prodAdv.call("ItemLookup", image, function(err, res) {
+//	  console.log(res);
+//  });
+  res.json(result);
+});
+});
+
+// using ebay and http
+var http = require('http');
+
+//Construct the request
+//Replace MyAppID with your Production AppID
+var url = "http://svcs.ebay.com/services/search/FindingService/v1";
+ url += "?OPERATION-NAME=findItemsByKeywords";
+ url += "&SERVICE-VERSION=1.0.0";
+ url += "&SECURITY-APPNAME=Studentb5-e548-490a-85d5-417ae4289c1";
+ url += "&GLOBAL-ID=EBAY-US";
+ url += "&RESPONSE-DATA-FORMAT=JSON";
+// url += "&callback=_cb_findItemsByKeywords";
+ url += "&REST-PAYLOAD";
+ url += "&keywords=harry%20potter";
+ url += "&paginationInput.entriesPerPage=3";
+ 
+ var Client = require('node-rest-client').Client;
+ 
+ client = new Client();
+  
+ app.get('/ebay', function(req, res){
+ // direct way 
+ client.get(url, function(data){
+             // parsed response body as js object 
+             console.log(data);
+             // raw response 
+           //  console.log(response);
+            res.send(data); 
+         });
+ });
+//using ebay and http end
+
+
 var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 

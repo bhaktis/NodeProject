@@ -1,6 +1,5 @@
 ﻿../../story/whatisnext.htm?../experiments/Angular/story.txt		       What is Next?
 dropdown.html															Drag and drop
-
 clickcounter.html                                                      Counter and hide /show images
 003.html                                                             Simple Example
 seperateappmodule.html                                                            Validation

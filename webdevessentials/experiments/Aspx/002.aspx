@@ -44,6 +44,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -52,10 +55,10 @@
         <h3>About the experiment</h3>
         <p>
             This page will built a simple calculator using ASP.NET and c#. 
-            Following function are added to calculator:
-            1. Add
-            2. Substract
-            3. Multiply
+            Following function are added to calculator:<br />
+            1. Add<br />
+            2. Substract<br />
+            3. Multiply<br />
             4. Divide                  
         </p>
      <h1>Simple Calculator</h1>
@@ -71,8 +74,11 @@
         <hr />
         <h3>Description</h3>
         <p>
-            On entering the values of a and b and selecting the function to perform, the calculator 
-            with return the result which will be displayed in the c.
+            On entering the values of a and b and selecting the function to perform.
+            For each button, there is a click event defined
+            which will take the button object as intput and the event arguments. 
+            The calculator with return the result which will be displayed in the c.
+                        
         </p>
         <hr />
         <h3>Code snippet</h3>

@@ -2,3 +2,5 @@
 001.html															Login Page
 002.html                                                             Logout Page
 003.html                                                              Maintain user state 
+004.html                                                              Views with Controllers
+005.html                                                              Multiple views in single page 

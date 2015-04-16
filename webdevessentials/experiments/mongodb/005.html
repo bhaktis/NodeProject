@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .image {
+            width: 430px;
+            height: 430px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Delete records</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            In this experiments we will be deleting record to the mongoDB database.
+            The developer objects JSON objects are deleted from the database using the
+            remove() function of the MOngoDB.
+        </p>
+        <img src="../images/1a.png" class="image" />
+        <img src="../images/1b.png" class="image" />
+        <hr />
+        <h3>Description</h3>
+        <p>
+            The experiment demonstrates deleting new records to the MongoDB collection using the remove() function
+            provided by mongoDB.remove() function is a asyn call that deletes data from the developer collection.
+            Inside this function call we define another functions which will be called on completion of remove with the error
+            data if any and the resultset with the record deleted. This new resulset is send to the node controller
+            which updates the view.
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Deleting records</p>
+        <pre>
+    app.delete("/developers/:id", function (req, res) {
+    DeveloperModel.findById(req.params.id, function (err, doc) {
+        doc.remove();
+        DeveloperModel.find(function (err, data) {
+            res.json(data);
+        });        
+    });   
+});
+         </pre>
+        <hr />
+        <h3>Link to the open shift server</h3>
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/index.html" target="_blank"> Open Shift Link</a></p>
+        <hr />
+        <h3>GitHub</h3>
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610" target="_blank"> GitHub</a></p>
+        <hr />
+
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+    </div>
+</body>
+</html>

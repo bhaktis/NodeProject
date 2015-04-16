@@ -1,0 +1,6 @@
+﻿../../story/whatisnext.htm?../experiments/projectrelatedexperiments/story.txt		       What is Next?
+001.html														     Understanding Amazon and eBay API's
+002.html                                                             Consuming Amazon API
+003.html                                                             Consuming eBay API
+004.html                                                             Rendering Content for amazon API
+005.html                                                             Rendering content for eBay API.
