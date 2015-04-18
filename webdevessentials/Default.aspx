@@ -49,21 +49,13 @@
             text-align: justify;
         }
 
-
-
-        body {
-            align-content: center;
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-            background-image: url("../images/background9.jpg");
-            background-position: center center;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-size:100%;    
-
-        }
+        html { 
+			background: url(images/background9.jpg) no-repeat center center fixed; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}      
 
         a {
             display: inline-block;
