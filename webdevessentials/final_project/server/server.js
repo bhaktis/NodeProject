@@ -67,11 +67,24 @@ app.post("/register", function(req, res){
 	req.login(user, function(err){
 	if(err)	{return next(err);}
 	res.json(user);
-	});	
-	
+	});		
 	});
 });
 
+app.put("/addmyshare/:id", function (req, res) {
+    
+	console.log("in the server>>");
+  var item = req.body;
+  console.log("item"+item);
+//
+    UserModel.update({ _id: req.params.id }, { shared: item }, function (err, doc) {
+    	UserModel.find(function (err, data) {
+            res.json(data);
+        });
+    });   
+    //developers[index] = developer;
+    //res.json(developers);
+});
 
 var auth = function(req, res, next){
 	if(!req.isAuthenticated())
@@ -96,10 +109,89 @@ password: String,
 first: String, 
 last: String,
 email: String,
-roles: [String]
+roles: [String],
+shared: [{category: String, organisation: String, quantity: String}]
 });
 
 var UserModel = mongoose.model("UserModel", UserSchema);
+
+
+//amazon start
+var util = require('util');
+var aws = require("aws-lib");
+
+ec2 = aws.createEC2Client("AKIAIPJMAQNDYSJYRVUA", "oItVCSoe5LqKTKQBfysUij/LonsXF+BkRFEIyRGX");
+var prodAdv = aws.createProdAdvClient("AKIAIPJMAQNDYSJYRVUA", "oItVCSoe5LqKTKQBfysUij/LonsXF+BkRFEIyRGX", "cs5-20");
+
+var options = {SearchIndex: "Books", Keywords: "Javascript", ResponseGroup: "ItemAttributes,Offers,Images"};
+
+app.get('/books', function (req, res) {
+    console.log(req);
+prodAdv.call("ItemSearch", options, function(err, result) {
+  console.log(result);
+ 
+  res.json(result);
+});
+});
+//amazon end
+
+//ebay start
+var http = require('http');
+
+//Construct the request
+//Replace MyAppID with your Production AppID
+var url = "http://svcs.ebay.com/services/search/FindingService/v1";
+url += "?OPERATION-NAME=findItemsByKeywords";
+url += "&SERVICE-VERSION=1.0.0";
+url += "&SECURITY-APPNAME=Studentb5-e548-490a-85d5-417ae4289c1";
+url += "&GLOBAL-ID=EBAY-US";
+url += "&RESPONSE-DATA-FORMAT=JSON";
+//url += "&callback=_cb_findItemsByKeywords";
+url += "&REST-PAYLOAD";
+url += "&keywords=harry%20potter";
+url += "&paginationInput.entriesPerPage=3";
+
+var Client = require('node-rest-client').Client;
+
+client = new Client();
+
+app.get('/ebay', function(req, res){
+	console.log("Inside ebay cient");
+// direct way 
+client.get(url, function(data){
+           // parsed response body as js object 
+           console.log(data);
+           // raw response 
+         //  console.log(response);
+          res.send(data); 
+       });
+});
+
+//ebay end
+
+//wallmart start
+//var options = {
+//    host: 'http://api.walmartlabs.com',
+//    port: '80',
+//    path: '/v1/search?query=grocery+rice&format=json&facet=on&apiKey=cb9u828stayvspr4jq85ywjz',
+//    method: 'GET',
+//    headers: {
+//        'Content-Type': 'application/json; charset=utf-8',
+//        'Content-Length': data.length
+//    }
+//};
+
+
+app.get('/walmart', function (req,res) {
+    console.log("inside wlamrt api");
+    var walmartURL = "http://api.walmartlabs.com/v1";
+        walmartURL+= "/search?query=grocery+rice&format=json&facet=on&apiKey=cb9u828stayvspr4jq85ywjz";
+    client.get(walmartURL, function (data) {
+        console.log("The data is" + data);
+        res.send(data);
+    });
+});
+//walmart end
 
 
 //app.listen(3000);
