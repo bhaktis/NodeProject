@@ -4,4 +4,4 @@ draganddrop.html															Drag and drop
 form.html                                                                   Form 
 geolocator.html                                                             Geolocator
 statuscheck.html                                                            Status check
-
+005.html                                                                     Canvas

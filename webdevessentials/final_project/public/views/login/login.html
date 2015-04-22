@@ -1,0 +1,69 @@
+<style>
+    h1 {
+        text-align: center;
+    }
+    .error {
+        color: red;
+        text-align:center;
+    }
+</style>
+<form ng-show="login">
+    <h1>Login</h1>
+    <table class="table table-responsive">
+
+        <tr>
+            <td>User name:</td>
+            <td><input ng-model="user.username" /> <br></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input ng-model="user.password" type="password"/></td>
+        </tr>
+        <tr>
+            <td><button ng-click="login(user)">Login</button></td>
+            <td><button ng-click="viewRegister()">Register</button></td>
+        </tr>
+    </table>
+</form>
+
+<form name="regForm" ng-hide="login">
+    <h1> Register</h1>
+    <span class="error">{{error}}</span>
+    <table class="table table-responsive">
+        <tr>
+            <td>First name<span class="error">*</span></td>
+            <td><input ng-model="user.first" /> <br></td>
+        </tr>
+        <tr>
+            <td>Last name<span class="error">*</span></td>
+            <td><input ng-model="user.last" /> <br></td>
+        </tr>
+        <tr>
+            <td>User name <span class="error">*</span></td>
+            <td><input ng-model="user.username" required/><br /></td>
+        </tr>
+        <tr>
+            <td>Password <span class="error">*</span></td>
+            <td><input ng-model="user.password" type="password" required /></td>
+        </tr>
+        <tr>
+            <td> Confirm Password <span class="error">*</span></td>
+            <td>
+                <input type="password" ng-model="user.password2" required />
+            </td>
+        </tr>
+
+        <tr>
+            <td> Email<span class="error">*</span></td>
+            <td>
+                <input type="email" name="input" ng-model="user.email" required>              
+
+            </td>
+        </tr>
+        <tr>
+            <td><button ng-click="registerUser(user)">Register</button></td>
+        </tr>
+    </table>
+</form>
+</form>
+

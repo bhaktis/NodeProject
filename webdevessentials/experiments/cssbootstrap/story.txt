@@ -1,0 +1,9 @@
+﻿../../story/whatisnext.htm?../experiments/cssbootstrap/story.txt		       What is Next?
+001.html                                                           Hover
+002.html                                                          Experiment 2
+003.html                                                          Parallelx
+004.html                                                          Modal Popup
+005.html                                                          Animation
+samplepagetemplate.html                                                          Home Page template using CSS and Bootstrap
+
+

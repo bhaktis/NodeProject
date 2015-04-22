@@ -9,6 +9,9 @@ var LocalStrategy = require('passport-local').Strategy;
 var cookieParser = require('cookie-parser'); 
 var session = require('express-session'); 
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multer()); // for parsing multipart/form-data
@@ -43,6 +46,15 @@ passport.use(new LocalStrategy(
 				return done(null, false, {message: 'Unable to login'});
 			});			
 		}));
+
+app.get('/', function (req, res) {
+    res.sendfile('index.html');
+});
+
+io.on('connection', function (socket) {
+    console.log('a user connected');
+});
+
 
 passport.serializeUser(function(user,done){
 	done(null,user);

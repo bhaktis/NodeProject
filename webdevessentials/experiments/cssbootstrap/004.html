@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    
+    <script>
+        $('#myModal').modal(options);
+    </script>
+</head>
+<body>
+    <h2>Creating modal using bootstrap</h2>
+     <div>
+        <h3>About the experiment</h3>
+        <p>
+           Here is a simple demo for modal pop up using bootstrap.
+        </p>
+       
+        <hr />
+        <h3>Description</h3>
+        <p>
+            Experiment demonstrates how to use bootstrap functionality to create a modal feature.
+        </p>
+         <button class="btn btn-primary btn-lg" data-toggle="modal"
+                 data-target="#myModal">
+             Launch demo modal
+         </button>
+         <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+              aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <button type="button" class="close"
+                                 data-dismiss="modal" aria-hidden="true">
+                             &times;
+                         </button>
+                         <h4 class="modal-title" id="myModalLabel">
+                             <input value="text" />
+                         </h4>
+                     </div>
+                     <div class="modal-body">
+                        <p>Modal body</p>
+                     </div>
+                     <div class="modal-footer">                         
+                         <button type="button" class="btn btn-primary">
+                             Submit changes
+                         </button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Modal main Div</p>
+        <pre>
+            < div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                </ div>
+         </pre>
+        <hr />
+        <h3>Link to the open shift server</h3>
+       
+        <hr />
+        <h3>GitHub</h3>
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610" target="_blank"> GitHub</a></p>
+        <hr />
+
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+         <p><a href="http://www.tutorialspoint.com/bootstrap/bootstrap_modal_plugin.htm" target="_blank">Tutorials Point</a></p>
+    </div>
+    
+</body>
+</html>

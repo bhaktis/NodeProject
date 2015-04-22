@@ -1,0 +1,59 @@
+<style>
+   table{
+       border:0px;
+   }
+</style>
+ <h3>Hello <span style="color:blue">{{currentUser.username}}</span>!!</h3>
+<div>
+    <span ng-show="updatesuccess">Profile updated successfully !!</span>
+    <span style="color:red" ng-show="error">Error update user record:{{error}}</span>
+</div>
+<h1>Profile</h1>
+
+<div class="container">
+
+        <table class="table table-responsive">
+            <tr>
+                <td> First Name:</td><td> {{currentUser.first}}</td>
+
+            </tr>
+            <tr>
+                <td> Last Name:</td><td> {{currentUser.last}}</td>
+            </tr>            
+            <tr>
+                <td> Email:</td><td> <input type="email" ng-model="currentUser.email" /></td>
+            </tr>
+            <tr>
+                <td> Contact:</td><td> <input ng-model="currentUser.contact" /></td>
+            </tr>
+            <tr>
+                <td> Address:</td>
+                <td> <input ng-model="currentUser.address" /></td>
+            </tr>
+            <tr ng-show="changePass">
+                <td> Password:</td>
+                <td> <input type="password" ng-model="currentUser.password" /></td>
+            </tr>
+            <tr ng-show="changePass">
+                <td> Confirm Password: </td>
+                <td><input type="password" ng-model="currentUser.password2" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <button ng-click="save();">Save</button>
+                </td>
+                <!--<td>
+                    Change Password:<input type="checkbox" ng-model="changePass" />
+                </td>-->
+            </tr>
+            
+        </table>
+
+
+    <div>
+        <ul class="list-inline" ng-repeat="share in currentUser.shared">
+            <li></li>
+        </ul>
+
+    </div>
+</div>

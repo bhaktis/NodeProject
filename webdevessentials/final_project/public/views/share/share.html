@@ -1,0 +1,213 @@
+<style>
+    th {
+        font: bold;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
+
+<div class="container">
+    <h2>Share</h2>
+    <span class="error">{{error}}</span>
+    <div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav active"><a role="tab" data-toggle="tab" ng-click="showmycoll()">My collection</a> </li>
+            <li class="nav"><a ng-click="shop()" role="tab" data-toggle="tab">Shopping List Page</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" ng-hide="ShoppingPage">
+            <div class="container">
+                <table class="table table-stripped" align="center">
+                    <tr>
+                        <td>
+                            I can share : <select ng-model="item.category">
+                                <option value="book">Books</option>
+                                <option value="clothes">Clothes</option>
+                                <option value="food">Food</option>
+                                <option value="electronics">Computers</option>
+                            </select>
+                        </td>
+                        <td>
+                            Quantity : <input ng-model="item.quantity" type="number" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Organisation:
+                            <select ng-model="org" ng-options="org.name for org in organisations"></select>
+                        </td>
+                        <td>
+                            Pick-up service/Drop service
+                            <select ng-model="service">
+                                <option value="pick-up">Please pick-up</option>
+                                <option value="dropit">I'll drop it</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            A brief description:
+
+                            <input type="text" ng-model="item.description" style="width:300px" />
+                        </td>
+                    </tr>
+
+                    <!--<tr ng-show="service == 'dropit'">
+                        <td>Address:{{org.location}} </td>
+                        <td>Contact:{{org.contact}}</td>
+                    </tr>-->
+                    <tr>
+                    <tr>
+                    <tr><td><button class="btn btn-warning" ng-click="submit(item,org,service)">Share</button></td></tr>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="tab-pane fade in active" ng-show="ShoppingPage" style="border:2px;">
+            <p> Select Search option </p>
+            <table class="table table-condensed">
+                <tr>
+                    <td>
+                        Category : <select ng-model="search.category">
+                            <option value="Books">Books</option>
+                            <option value="Grocery">Food</option>
+                            <option value="Electronics">Electronics</option>
+                            <!--<option value="Baby">Baby Products</option>-->
+                            <option value="Clothing">Clothings</option>
+                        </select>
+                    </td>
+                    <td>
+                        Type: <input type="text" ng-model="search.type" alt="enter key word" />
+                        <select ng-if="search.category == 'clothing'">
+                            <option value="Wholesale tshirts">Girls</option>
+                            <option value="FashionGirls">Boys</option>
+                            <option value="Girls">Girls</option>
+                            <option value="Boys">Warm Clothes</option>
+                        </select>
+                    </td>
+                    <td>
+                        Website : <select ng-model="search.source">
+                            <option value="ebay">eBay</option>
+                            <option value="amazon" ng-hide="search.category == 'clothing'">Amazon</option>
+                            <option value="walmart">Walmart</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-primary" ng-click="searchItems(search)">Search</button>
+                        <button class="btn btn-warning" ng-show="cartItems.length != 0" ng-click="share(org)">Share</button>
+                    </td>
+                    <td>
+                        Organisation :
+                        <select ng-model="org" ng-options="org.name for org in organisations"></select>
+                    </td>
+                    <td>Cart Count:<span>{{cartItems.length}}</span></td>
+
+                </tr>
+            </table>
+            <br />
+
+            <div>
+                <div class="container" ng-show="AmazonPage">
+                    <table class="table table-striped table-bordered" align="center">
+                        <thead>
+                            <tr>
+                                <th>Decscrption</th>
+                                <th>Price</th>
+                                <th>Add to Cart</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in shoppingCart">
+                                <td>
+                                    <img src="{{item.MediumImage['URL']}}" style="width:{{item.MediumImage['Width']}};height:{{item.MediumImage['Height']}};float:left">
+                                    <b>
+                                        <ul ng-init="desc = item.ItemAttributes">
+                                            <li>{{item.ItemAttributes['ISBN']}}</li>
+                                            <li>Title: {{desc['Title']}}</li>
+                                            <li>Author: {{desc['Author']}}</li>
+                                            <li>Publisher: {{desc['Manufacturer']}}</li>
+                                        </ul>
+                                    </b>
+                                </td>
+                                <td><p ng-init="price = desc['ListPrice']"> {{price['ListPrice']}}</p></td>
+                                <td><img src="/images/shoppingCart.png" ng-click="addtocart(search.category,'amazon',item.ItemAttributes['ISBN'],item.ItemAttributes,price['ListPrice'],item.quantity);"></td>
+                                <td class="quantity"><input ng-model="item.quantity" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container" ng-show="ebay">
+                    <table class="table table-striped table-bordered" align="center">
+                        <thead>
+                            <tr>
+                                <th>Description </th>
+                                <th>Price</th>
+                                <th>Add to Cart</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in shoppingCart" ng-show="item.title">
+                                <td>
+                                    <img src="{{item.galleryURL[0]}}" border="0">
+                                    <a href="{{item.viewItemURL[0]}}" target="_blank">{{item.title[0]}}</a>
+                                </td>
+                                <td class="price">{{item.sellingStatus[0].currentPrice[0].value}}</td>
+                                <td><img src="/images/shoppingCart.png" ng-click="addtocart(search.category,'ebay',item.title[0],item.sellingStatus[0].currentPrice[0].value,item.quantity);"></td>
+                                <td class="quantity"><input ng-model="item.quantity" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container" ng-show="walmart">
+                    <table class="table table-striped table-bordered" align="center">
+                        <thead>
+                            <tr>
+                                <th>Product </th>
+                                <th>desc</th>
+                                <th>Add to Cart</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in shoppingCart">
+                                <td>
+                                    <img src="{{item.thumbnailImage}}" ng-show="item.thumbnailImage" sty style="width:50px;height:50px;float:left">
+
+                                    <ul>
+                                        <li>{{item.name}}</li>
+                                        <li>Available {{item.availableOnline}}</li>
+                                        <li>shipping rate: {{item.standardShipRate}}</li>
+                                    </ul>
+
+                                </td>
+                                <td class="price">{{item.salePrice}}</td>
+                                <td><img src="/images/shoppingCart.png" ng-click="addtocart(search.category,'walmart',item.name,item.salePrice,item.quantity);"></td>
+                                <td class="quantity"><input value="0" ng-model="item.quantity" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--<nav ng-show="AmazonPage || ebay || walmart">
+                    <ul class="pager">
+                        <li><button ng-click="previousPage(search);">Previous</button></li>
+                        <li><button ng-click="currentPage(search);">Next</button></li>
+                    </ul>
+                </nav>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+

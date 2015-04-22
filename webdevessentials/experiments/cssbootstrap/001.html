@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel='stylesheet' href='css/style.css'>
+
+    <style>
+        #banner {
+            width: 600px;
+            height: 340px;
+            position: relative;
+            border: 9px solid rgba(0,0,0,1);
+            -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.75);
+        }
+
+            #banner div {
+                position: absolute;
+                  width: 700px;
+                  height: 300px;
+            background-size:contain;
+
+            }
+
+                #banner div:nth-child(2) {
+                    -webkit-animation: wipe 6s infinite;
+                    -webkit-animation-delay: 2s;
+                    -webkit-animation-direction: alternate;
+                    -webkit-mask-size: 2000px 2000px;
+                    -webkit-mask-image: -webkit-gradient(linear, left top, right bottom, color-stop(0.00, rgba(0,0,0,1)), color-stop(0.45, rgba(0,0,0,1)), color-stop(0.50, rgba(0,0,0,0)), color-stop(0.55, rgba(0,0,0,0)), color-stop(1.00, rgba(0,0,0,0)));
+                }
+
+        @-webkit-keyframes wipe {
+            0% {
+                -webkit-mask-position: 0 0;
+            }
+
+            100% {
+                -webkit-mask-position: -1200px -1200px;
+            }
+        }             
+    </style>
+
+</head>
+<body>
+    <div id="page-wrap">        
+        <div id="banner">
+            <div><img src="images/4.jpg" alt="Skyline 1"></div>
+            <div><img src="images/3.jpg" alt="Skyline 2"></div>
+        </div>
+    </div>
+
+</body>
+</html>

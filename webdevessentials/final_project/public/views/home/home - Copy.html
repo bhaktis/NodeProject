@@ -1,0 +1,44 @@
+<style>
+    .messages{
+        
+        font-family:Georgia;
+        color:#000000;
+    }
+</style>
+<div>
+    <p>Welcome to </p>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div id="wrapper" class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="/images/f10.jpg" alt="Chania" class="img-responsive">
+            </div>
+
+            <div class="item">
+                <img src="/images/f11.png" alt=" chania" class="img-responsive">
+            </div>
+
+            <div class="item">
+                <img src="/images/f2.jpg" alt="Flower" class="img-responsive">
+            </div>
+
+            <div class="item">
+                <img src="/images/f7.jpg" alt="Flower" class="img-responsive">
+            </div>
+        </div>
+
+    </div>
+
+    <div ng-controller="refresh_control">
+        <h2 class="messages"><b>{{message}}</b></h2>
+        <!--<input type="button" ng-click="killtimer()" value="Kill me">-->
+    </div>
+</div>

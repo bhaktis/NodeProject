@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" initial-scale=1>
+    <title></title>
+    <style>
+        .parallax {
+            perspective: 1px;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .parallax__layer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+
+        .parallax__layer--fore {
+            -webkit-transform: translateZ(90px) scale(.7);
+            transform: translateZ(90px) scale(.7);
+            z-index: 1;
+        }
+
+        .parallax__layer--base {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            z-index: 4;
+        }
+
+        .parallax__layer--back {
+            -webkit-transform: translateZ(-2px) scale(3);
+            transform: translateZ(-2px) scale(3);
+            z-index: 3;
+        }
+
+        .parallax__layer--deep {
+            -webkit-transform: translateZ(-600px) scale(3);
+            transform: translateZ(-600px) scale(3);
+            z-index: 2;
+        }
+
+        .title {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .parallax__group {
+            position: relative;
+            height: 100vh;
+            transform-style: preserve-3d;
+        }
+
+
+        .parallax__layer {
+            padding: 100vh 0;
+        }
+
+        #group1 {
+            z-index: 5; /* slide over group 2 */
+        }
+
+            #group1 .parallax__layer--base {
+                background: rgb(102,204,102);
+            }
+
+        #group2 {
+            z-index: 3; /* slide under groups 1 and 3 */
+        }
+
+            #group2 .parallax__layer--back {
+                background: rgb(123,210,102);
+            }
+
+        #group3 {
+            z-index: 4; /* slide over group 2 and 4 */
+        }
+
+            #group3 .parallax__layer--base {
+                background: rgb(153,216,101);
+            }
+
+        body, html {
+            overflow: hidden;
+        }
+
+        body {
+            font: 100% / 1.5 Arial;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .parallax {
+            font-size: 200%;
+        }
+    </style>
+</head>
+<body>
+    <h2>Parallex </h2>
+    <div>
+        <h3>Demo of Parallex</h3>
+
+        <h3>Description</h3>
+        <p>
+            This experiment is a simple demonstration of the parallex feature.
+            We define the web page in layers which flow relative to each other.
+            This build a 3d like effect in the web page.
+        </p>
+        <p>  On scrolling the below div you will see the various layers of the parallex page.</p>
+        <hr />
+        <hr />
+        <h3>View Source</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/Angular/routeprovider.html" target="_blank"> routeprovider.html</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/experiments" target="_blank">GitHub Link </a></p> <hr />
+        <h3>References</h3>
+        <p><a href="http://tutorialspoint.com/angularjs/" target="_blank">Angular JS tutorials point</a></p>
+        <p><a href="http://keithclark.co.uk/articles/pure-css-parallax-websites/" target="_blank">Pure CSS parallex scrolling web site</a></p>
+        <hr />
+        <div class="parallax">
+            <div class="parallax__group" id="group1">
+                <div class="parallax__layer parallax__layer--back">
+                    <div class="title"> back layer 1</div>
+                </div>
+                <div class="parallax__layer parallax__layer--base">
+                    <div class="title">This is foreground</div>
+                </div>
+            </div>
+            <div class="parallax__group" id="group2">
+                <div class="parallax__layer parallax__layer--base">
+                    <div class="title">Base Layer</div>
+                </div>
+                <div class="parallax__layer parallax__layer--back">
+                    <div class="title">Background Layer</div>
+                </div>
+            </div>
+
+            <div class="parallax__group" id="group3">
+                <div class="parallax__layer parallax__layer--fore">
+                    <div class="title">Foreground Layer</div>
+                </div>
+                <div class="parallax__layer parallax__layer--base">
+                    <div class="title">Base Layer</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>

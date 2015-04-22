@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HomePage</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        padding: 30px;
+    }
+</style>
+<body ng-app="PassportApp">
+    <div ng-controller="NavCtrl">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="" class="navbar-brand">Make a Donation</a>
+                </div>
+                <div class="collapse navbar-collapse btn-toolbar" id="navbar-collapse">
+                    <a class=" btn btn-primary navbar-btn navbar-right" ng-hide="currentUser" ng-click=" login()">Login</a>
+                    <a class=" btn btn-primary navbar-btn navbar-right" ng-show="currentUser" ng-click="logout()">Logout</a>
+                    <ul class="nav navbar-nav">
+                        <li class="home"><a href="#home">Home</a>  </li>
+                        <li class="tutorials"><a href="#about">About</a> </li>
+                        <li class="tutorials"><a href="#profile" ng-show="currentUser">Profile</a> </li>
+                        <li class="share" ng-show="currentUser"><a href="#share">Share</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+        <div ng-view></div>
+        <div class="jumbotron">
+            <div class="container text-center">
+                <h1>Sharepoint</h1>
+
+
+            </div>
+        </div>
+
+        <div class="container">
+            <section>
+
+                <div class="carousel slide" id="carousal">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousal" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousal" data-slide-to="1"></li>
+                        <li data-target="#carousal" data-slide-to="2"></li>
+                        <li data-target="#carousal" data-slide-to="3"></li>
+
+                    </ol>
+                    <div class="carousel-inner ">
+                        <div class="item active">
+                            <img src="images/donate1.jpg" alt="Shop1" width="500" height="30" />
+                        </div>
+                        <div class="item">
+                            <img src="images/donate2.jpg" alt="Shop image" width="500" height="30" />
+                        </div>
+                        <div class="item">
+                            <img src="images/donate3.jpg" alt="Shop image" width="500" height="30" />
+                        </div>
+
+
+                    </div>
+                    <a href="#carousal" class="left carousel-control" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a href="#carousal" class="right carousel-control" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+
+            </section>
+        </div>
+        <div class=container>
+            <section>
+                <div class="jumbotron page-header" id="contact">
+                </div>
+            </section>
+        </div>
+        <footer>
+
+            <ul class="list-inline text-center item">
+                <li>
+
+                    <a href="https://www.linkedin.com/pub/bhaktisanglikar" width="50px" height="50px">
+                        <img src="images/linkedin.png" alt="LinkedIn">
+                    </a>
+                    <a href="https://www.facebook.com/bhakti.sanglikar" width="50px" height="50px">
+                        <img src="images/facebook.png" alt="Facebook">
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </footer>
+        <div class="container div-container center-block">
+            <hr />
+            <p style="text-align:center">Copyright (c) 2015 | Created by Bhakti Sanglikar | CS5610  </p>
+
+            <br /><br />
+        </div>
+
+</div>
+</body>
+</html>

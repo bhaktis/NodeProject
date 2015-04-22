@@ -2,8 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <style type="text/css">
+        .image {
+            width: 430px;
+            height: 430px;
+        }
+    </style>
 </head>
 <body>
-
+    <h2>Chat Application</h2>
+    <div>
+        <h3>About the experiment</h3>
+        <p>
+            We would create a simple chat application using node js
+        </p>
+        
+        <hr />
+        <h3>Description</h3>
+        <p>
+            The experiment demonstrates how to create a chat applicatyion using node js.
+            We use the sockect io library for this purpose from the Node JS.
+        </p>
+        <hr />
+        <h3>Code snippet</h3>
+        <p>Delete request at server</p>
+        <pre>
+                                io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+         </pre>
+        <hr />
+        <p><a href="http://nodeapp-cs5610nodejs.rhcloud.com/index.html" target="_blank"> Open Shift Link</a></p>
+        <hr />
+        <p><a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/node_app" target="_blank">GitHub Link </a></p>
+        <hr />
+        <h3>View Source</h3>
+        <p><a href="../../fileview/Default.aspx?~/experiments/ng-Routing/001.html" target="_blank"> Code file</a></p>
+        <p><a href="../../fileview/Default.aspx?~/experiments/ng-Routing/js/001.js" target="_blank"> Script file</a></p>
+        <hr />
+        <h3>References</h3>
+        <p><a href="https://www.youtube.com/user/jannunzi" target="_blank"> Prof. Jose's videos</a></p>
+    </div>
 </body>
 </html>
