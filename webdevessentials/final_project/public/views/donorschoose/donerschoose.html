@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--<link href="../../css/bootstrap.css" rel="stylesheet" />
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/angular.js"></script>
+    <script src="../../js/bootstrap.js"></script>
+    <script src="../../js/angular-route.js"></script>
+    <script src="../../js/app.js"></script>
+    <script src="../../js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+    <script src="donorschoose.js"></script>-->
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
+    <style>
+        .description {
+            font-family: 'Droid Sans', sans-serif;
+            font-size: xx-small;
+        }
+
+        .title {
+            font-family: 'Tangerine', sans-serif;
+            font-size:xx-large;
+            font-weight:bolder;
+        }
+    </style>
+    <script>
+        $("#show").click(function () {
+            // alert("Handler for .click() called.");
+            $("#show").hide();
+        });
+
+        $("#hide").click(function () {
+            //  alert("Handler for .click() called.");
+            $("#show").show();
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <br /><br /><br />
+
+        
+        <div>
+            <div>
+                <center>
+                    <div class="alert alert-danger" role="alert" ng-show="error">
+                        <button type="button" class="close" ng-show="error" data-dismiss="error" ng-click="error = null" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Error!</strong> {{error}}
+                    </div>
+                    <div class="alert alert-warning" role="alert" ng-show="warning">
+                        <button type="button" class="close" ng-show="warning" data-dismiss="error" ng-click="warning = null" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Warning!</strong> {{warning}}
+                    </div>
+                    <div class="alert alert-success" role="alert" ng-show="success">
+                        <button type="button" class="close" ng-show="success" data-dismiss="error" ng-click="success = null" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Success!</strong> {{success}}
+                    </div>
+                    <h2>School projects requiring funding</h2>
+                    <p>
+                        Finding school projects in you area that require funding.
+                    </p>
+                    <p>You can select on one of criteria for filtering e.g. "Most urgent requirement projects"</p>
+                    <table>
+                        <tr>
+                            <td>
+                                <b>Enter a zip code:</b>
+                                <input type="text" ng-model="search.zipcode" style="width:300px" />
+
+                                <button class="btn btn-warning" ng-click="submit(search)">Search</button>
+                                <button class="btn btn-warning" ng-show="currentUser" id="show" ng-click="getWishList();">Show WishList</button>
+                                <button class="btn btn-warning" ng-show="seeingWishList" id="hide" ng-click="submit(search);">Hide WishList</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <b>Select a category : </b>
+                                <select ng-model="search.type">
+                                    <option value="1">Highest Poverty</option>
+                                    <option value="2">Lowest cost</option>
+                                    <option value="0">Most Urgent</option>
+                                    <option value="5">Newest</option>
+                                    <option value="3">Few days left</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+
+        </div>
+        <div class="container">
+            <ul ng-repeat="res in results" class="list-group">
+                <li class="list-group-item">
+                    <div class="jumbotron">
+                        <div class="row">
+                            <h3><b>{{res.title}}<a class="glyphicon glyphicon-heart-empty"></a></b></h3>
+                            <img src="{{res.imageURL}}" style="float:left">
+                            <div class="col-sm-8">
+
+                                <p class="description">
+                                    <b> Description: </b>
+                                    {{res.shortDescription}}
+                                </p>
+                                <p class="description">  <b>Requirement:</b> {{res.fulfillmentTrailer}}</p>
+                                <b>Total Cost :</b>  {{res.totalPrice}}<br />
+                                <b>School name:</b>{{res.schoolName}}<br />
+                                <b>School Url:</b><a href="{{res.schoolUrl}}">{{res.schoolUrl}}</a>   <br />
+                                <b>Expiration:</b> {{res.expirationDate}}
+                                {{res.fundingStatus}}<br />
+                                <button ng-hide="seeingWishList" ng-click=" addtowishlist(res);">Add to wish list</button>
+                                <button ng-click="donate(res);">Give</button>
+                                <button ng-show="seeingWishList" ng-click=" removewish(res);">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+        <nav ng-hide="results == null || seeingWishList">
+            <ul class="pager">
+                <li><button class="btn btn-info" ng-hide="pageCount == 0" ng-click="previousPage(search);"><span aria-hidden="true">&larr;</span> Previous</button></li>
+                <li><button class="btn btn-info" ng-click="nextPage(search);">Next<span aria-hidden="true">&rarr;</span></button></li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

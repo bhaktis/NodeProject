@@ -1,44 +1,51 @@
-app.controller('ShareCtrl', function ($scope, $modal, $http, $rootScope) {
+app.controller('ShareCtrl', function ($scope, $modal, $http, $rootScope, $cookieStore) {
 
-    $scope.AmazonPage = false;
-    $scope.ebay = false;
     $scope.mycollection = false;
     $scope.ShoppingPage = false;
     $scope.shoppingCart = null;
     $scope.error = null;
-    $scope.pageCount = 0;
+    $scope.pageCount = 1;
+    $scope.source = "";
+    $scope.warning = "";
 
     $scope.share = function (org) {
         console.log("Donating >>" + org);
-        if (org == null || $scope.cartItems == null) {
+        if ((org == null && $rootScope.orgSelected == null) || $scope.cartItems == null) {
             console.log("error");
             $scope.error = "Please enter all fields !!";
         }
         else {
-            $scope.error = "";
-            //var donation = { organisation: org.name, items: [$scope.cartItems] };
+            $scope.error = null;
+            var organisation;
+            if ($rootScope.orgSelected != null)
+                organisation = $rootScope.orgSelected;
+            else
+                organisation = org;
+            console.log(organisation);
+            $rootScope.orgSelected = null;
             var items = $scope.cartItems;
-            console.log(items);  //{ "category":category,"source": source, "description": desc, "price": price, "quantity": quant};
+            console.log(items);
             var donation = [];
-            //   var donation = { organisation: org.name, category: item.category, description: item.description,quantity: item.quantity, source: item.source, price: item.price };
             console.log("donation>>");
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
-                donation[i] = { organisation: org.name, category: item.category, description: item.description, quantity: item.quantity, source: item.source, price: item.price };
+                donation[i] = { organisation: organisation.name, category: item.category, description: item.description, quantity: item.quantity, source: item.source, price: item.price };
             }
             console.log(donation);
             $http.put("/donated/" + $rootScope.currentUser._id, donation).success(function (response) {
                 console.log(response);
                 $rootScope.currentUser = response;
                 $scope.cartItems = null;
+                $cookieStore.put('cartItem', $scope.cartItems); //added new
                 var modalInstance = $modal.open({
-                    templateUrl: '/views/success/success.html'
+                    templateUrl: '/views/success/success.html',
+                    windowClass: 'success',
                 });
             });
         }
     }
 
-    $scope.cartItems;
+    $scope.cartItems = $cookieStore.get("cartItems");
 
     $scope.showmycoll = function () {
         $scope.ShoppingPage = false;
@@ -48,83 +55,149 @@ app.controller('ShareCtrl', function ($scope, $modal, $http, $rootScope) {
         $scope.ShoppingPage = true;
     }
     $scope.submit = function (item, org, service) {
-
-        console.log("donating myself >>");
-        if (org == null || item == null || item.category == null || item.quantity == null || service == null || (item.quantity == 0)) {
+        if (item == null || service == null) {
             console.log("error");
             $scope.error = "Please enter all fields !!";
         }
         else {
-            $scope.error = "";
-            var donation = { organisation: org.name, category: item.category, description: item.description, quantity: item.quantity };
-            console.log("donation>>");
-            console.log(donation);
-            $http.put("/donated/" + $rootScope.currentUser._id, donation).success(function (response) {
-                console.log(response);
-                $rootScope.currentUser = response;
-                console.log("CurrentUser after donating>>");
-                console.log($rootScope.currentUser);
-                var modalInstance = $modal.open({
-                    templateUrl: '/views/success/success.html'
+
+            console.log("donating  >>");
+            console.log(org);
+            console.log($rootScope.orgSelected);
+            if ((org == null && $rootScope.orgSelected == null) || item == null || item.category == null || item.quantity == null || service == null || (item.quantity == 0)) {
+
+                console.log("error");
+                $scope.error = "Please enter all fields !!";
+            }
+            else {
+                $scope.error = null;
+                var organisation;
+                if ($rootScope.orgSelected != null)
+                    organisation = $rootScope.orgSelected;
+                else
+                    organisation = org;
+                console.log(organisation);
+                $rootScope.orgSelected = null;
+                var donation = [{ organisation: organisation.name, category: item.category, description: item.description, quantity: item.quantity }];
+                console.log("donation>>");
+                console.log(donation);
+                $http.put("/donated/" + $rootScope.currentUser._id, donation).success(function (response) {
+                    console.log(response);
+                    $rootScope.currentUser = response;
+                    console.log("CurrentUser after donating>>");
+                    console.log($rootScope.currentUser);
+                    var modalInstance = $modal.open({
+                        templateUrl: '/views/success/success.html'
+                    });
                 });
-            });
+            }
         }
     }
     $scope.searchItems = function (search) {
         console.log("Inside search Items page" + search);
-        var searchQuery = { category: search.category, keyword: search.type };
+        if (search != undefined) {
+            search.page = $scope.pageCount;
+            console.log("Page number" + search.page);
+            var searchQuery = { category: search.category, keyword: search.type, page: search.page };
 
-        console.log(searchQuery.category + " and " + searchQuery.keyword);
+            console.log(searchQuery.category + " and " + searchQuery.keyword);
 
-        if (search.source == "amazon") {//amazon code
-            console.log("show amazon page");
-            $scope.AmazonPage = true;
-            $scope.ebay = false;
+            if (search.source == "amazon") {//amazon code
+                console.log("show amazon page");
 
-            $http.post("/books", searchQuery).success(function (response) {
-                var ItemsList = response['Items'];
-                console.log(ItemsList['Item']);
-                $scope.shoppingCart = ItemsList['Item'];
-            });
-            //amazon code end
+                $http.post("/amazon", searchQuery).success(function (response) {
+                    var ItemsList = response['Items'];
+                    var items = ItemsList['Item'];
+                    $scope.shoppingCart = ItemsList['Item'] || null;
+                    if ($scope.shoppingCart == null) {
+                        $scope.warning = "No records found";
+                        console.log($scope.shoppingCart);
+                    } else {
+                        $scope.source = "amazon";
+                        console.log("Shopping cart" + $scope.shoppingCart);
+                        console.log("source" + $scope.source);
+                    }
+                });
+                //amazon code end
+            }
+            else if (search.source == "ebay") {
+                $http.post("/ebay", searchQuery).success(function (response) {
+                    console.log(response);
+                    var items = response.findItemsByKeywordsResponse[0].searchResult[0].item || null;
+                    console.log(items);
+                    $scope.shoppingCart = items;
+                    if ($scope.shoppingCart == null) {
+                        $scope.warning = "No records found";
+                        console.log($scope.shoppingCart);
+                    } else {
+                        //var items = response.findItemsByKeywordsResponse[0].searchResult[0].item || [];     
+                        $scope.source = "ebay";
+                        console.log("Shopping cart" + $scope.shoppingCart);
+                        console.log("source" + $scope.source);
+                    }
+
+                });
+            }
+            else if (search.source == "walmart") {
+                console.log("inside walmart api");
+                $http.post("/walmart", searchQuery).success(function (response) {
+                    console.log(response.items);
+                    $scope.shoppingCart = response.items || null;
+                    if ($scope.shoppingCart == null) {
+                        $scope.warning = "No records found";
+                        console.log($scope.shoppingCart);
+                    } else {
+                        $scope.source = "walmart";
+                        console.log("Shopping cart" + $scope.shoppingCart);
+                        console.log("source" + $scope.source);
+                    }
+                });
+            }
+            else {
+                $scope.warning = "select search criteria";
+            }
+        } else {
+            $scope.warning = "Select search criteria";
         }
-        else if (search.source == "ebay") {
-            console.log("sjhow ebay page");
-            $http.post("/ebay", searchQuery).success(function (response) {
-                console.log(response);
-                var items = response.findItemsByKeywordsResponse[0].searchResult[0].item || [];
-                console.log(items);
-                $scope.shoppingCart = items;
-                // console.log(items);
-            });
-            $scope.AmazonPage = false;
-            $scope.ebay = true;
-        }
-        else if (search.source == "walmart") {
-            console.log("inside walmart api");
-            $http.post("/walmart", searchQuery).success(function (response) {
-                console.log(response.items);
-                $scope.walmart = true;
-                $scope.shoppingCart = response.items;
-            });
-        }
+
 
     }
 
     $scope.addtocart = function (category, source, desc, price, quant) {
         console.log(category + source + desc + price + quant);
-        //if (quant == "0") {
-        //    $scope.error = "Please enter a quantity for the item";
-        //}
-        //else {
-        var item = { "category": category, "source": source, "description": desc, "price": price, "quantity": quant };
-        if ($scope.cartItems != null)
-            $scope.cartItems.push(item);
-        else
-            $scope.cartItems = [item];
-        console.log($scope.cartItems);
-        console.log($scope.cartItems.length);
-       // }
+        if (quant != undefined) {
+            var item = { "category": category, "source": source, "description": desc, "price": price, "quantity": quant };
+            if ($scope.cartItems != null) {
+
+                console.log("psuh new item 1");
+                var i = null;
+                for (i = 0; i < $scope.cartItems.length; i++) {
+                    console.log("psuh new item2");
+                    if ($scope.cartItems[i].description == item.description) {
+                        console.log("psuh new item3");
+                        var quantity = parseInt($scope.cartItems[i].quantity);
+                        $scope.cartItems[i].quantity = quantity + parseInt(item.quantity);
+                        $cookieStore.put('cartItems', $scope.cartItems);
+                        $scope.success = "Product already present. Updated quantity."
+                        break;
+                    }
+                }
+                if (i == $scope.cartItems.length) {
+                    console.log("psuh new item");
+                    $scope.cartItems.push(item);
+                    $cookieStore.put('cartItems', $scope.cartItems);
+                }
+            }
+            else {
+                $scope.cartItems = [item];
+                $cookieStore.put('cartItems', $scope.cartItems);
+            }
+            console.log($scope.cartItems);
+            console.log($scope.cartItems.length);
+        } else {
+            $scope.error = "Quantity cannot be blank";
+        }
+
     }
 
     $scope.userChoice = function (choice) {
@@ -141,16 +214,31 @@ app.controller('ShareCtrl', function ($scope, $modal, $http, $rootScope) {
     $scope.previousPage = function (search) {
         console.log("Previous page >>");
         console.log(search);
-
         $scope.pageCount = $scope.pageCount - 1;
-        // searchItems(search);
+        $scope.searchItems(search);
     }
 
     $scope.nextPage = function (search) {
         console.log("Next Page >>");
         console.log(search);
-        $scope.nextPage = $scope.nextPage + 1;
-        //searchItems(search);
+        $scope.pageCount = $scope.pageCount + 1;
+        $scope.searchItems(search);
+    }
+
+    $scope.remove = function (cartItem) {
+        console.log("in remove cart item");
+        console.log(cartItem);
+        var cart = $scope.cartItems;
+        console.log(cart);
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i].description == cartItem.description) {
+                console.log("removing" + i);
+                cart.splice(i, 1);
+                $scope.cartItems = cart;
+                $cookieStore.put('cartItems', $scope.cartItems);
+                break;
+            }
+        }
     }
 
     //ebay code 

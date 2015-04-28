@@ -1,9 +1,33 @@
 #login {
-  
-   float:right;
+    float: right;
 }
 
 li {
-	list-style:none;
-	display: inline;
+    list-style: none;
+    display: inline;
+}
+
+.messages {
+    font-family: Courgette;
+    color: #000000;
+    font-size: large;
+}
+
+#update-div {
+    display: table;
+    height: 150px;
+    position: relative;
+    width: 100%;
+}
+
+#header {
+    background: url(../images/24.jpg) no-repeat center center fixed;
+    display: table;
+    height: 100px;
+    position: relative;
+    width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

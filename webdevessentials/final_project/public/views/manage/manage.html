@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <br /><br /><br />
+    
+    <div ng-hide="requests">
+       Donations:<h2>No requests available</h2>
+    </div>
+    <div class="tab-content" ng-show="requests">
+        <div class="tab-pane fade in active" ng-show="pickup">
+            <div class="container">
+                <table class="table table-stripped table-bordered table-condensed" align="center">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Contact</th>
+                            <th>Donated</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="user in requests">
+                        <tr ng-repeat="shared in user.shared">
+                            <td ng-show="shared.organisation == currentOrganisation.name">{{user.username}}</td>
+                            <td ng-show="shared.organisation == currentOrganisation.name">{{user.email}}</td>
+                            <td ng-show="shared.organisation == currentOrganisation.name">{{shared.category}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--<div class="tab-content">
+        <div class="tab-pane fade in active" ng-show="pickup">
+            <div class="container">
+                <table class="table table-stripped" align="center" ng-show="requests">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Contact</th>
+                            <th>Donated</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="user in requests">
+
+                        <tr ng-repeat="shared in user.shared">
+                            <td ng-show="shared.organisation == currentOrganisation.name">{{user.username}}</td>
+                            <td ng-show="shared.organisation == currentOrganisation.name">{{user.email}}</td>
+                            <td ng-show="shared.organisation == currentOrganisation.name">{{shared.category}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>-->
+</body>
+</html>

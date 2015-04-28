@@ -1,83 +1,204 @@
-<style>
-    .messages {
-        font-family: Georgia;
-        color: #000000;
-    }
-</style>
-<div class="jumbotron">
-    <div class="container text-center">
-        <h1 class="h"><b>Sharepoint</b></h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home Page</title>
+
+    <script>
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 3000
+            });
+
+            $('.carousel').carousel('cycle');
+        });
+    </script>
+    <style>
+        /* Container Border */        
+
+#quote-carousel {
+            padding: 0 10px 30px 10px;
+            margin-top: 30px;
+        }
+            #quote-carousel .carousel-control {
+                background: none;
+                color: #222;
+                font-size: 2.3em;
+                text-shadow: none;
+                margin-top: 30px;
+            }
+
+
+        .item blockquote {
+            border-left: none;
+            margin: 0;
+        }
+
+            .item blockquote p:before {
+                content: "\f10d";
+                font-family: 'Fontawesome';
+                float: left;
+                margin-right: 10px;
+            }
+
+        @media (min-width: 768px) {
+            #quote-carousel {
+                margin-bottom: 0;
+                padding: 0 40px 30px 40px;
+            }
+        }
+        p{
+             font-family: 'Fontawesome';
+        }
+        h3{
+            font-family: 'Courgette' sans-serif;
+        }
+#body{
+    padding-top:0px;
+}
+    </style>
+</head>
+<body>
+    <div class="jumbotron" id="header">
+        <div class="container text-center">
+            <h1 class="h"><b>Smile Train</b></h1>
+        </div>      
     </div>
-</div>
+    <div id="body" class="container">
+        <div>
 
-<div class="container">
-    <section>
+            <div id="image-slider" class="row">
+                <div class="carousel slide" id="carousal">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousal" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousal" data-slide-to="1"></li>
+                        <li data-target="#carousal" data-slide-to="2"></li>
+                        <li data-target="#carousal" data-slide-to="3"></li>
 
-        <div class="carousel slide" id="carousal">
-            <ol class="carousel-indicators">
-                <li data-target="#carousal" data-slide-to="0" class="active"></li>
-                <li data-target="#carousal" data-slide-to="1"></li>
-                <li data-target="#carousal" data-slide-to="2"></li>
-                <li data-target="#carousal" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner ">
+                        <div class="item active">
+                            <img src="images/donate11.jpg" alt="1" width="450" height="30" />
+                            <div class="carousel-caption">
+                                <h3>Connecting people</h3>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="images/donation1.jpg" alt="2" width="450" height="30" />
+                            
+                        </div>
+                        <div class="item">
+                            <img src="images/f7.jpg" alt="3" width="450" height="30" />
+                            <div class="carousel-caption">
+                                <h3>Educate all</h3>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="images/donate10.jpg" alt="4" width="450" height="30" />
+                            <div class="carousel-caption">
+                                <h3>Basic needs</h3>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="images/d1.jpg" alt="5" width="450" height="30" />
+                            <div class="carousel-caption">
+                                <h3>Eliminate hunger</h3>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="images/5.jpg" alt="Shop image" width="500" height="30" />
+                            <div class="carousel-caption">
+                                <h3>Bring a smile :)</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#carousal" class="left carousel-control" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a href="#carousal" class="right carousel-control" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
 
-            </ol>
-            <div class="carousel-inner ">
-                <div class="item active">
-                    <img src="images/donate1.jpg" alt="Shop1" width="500" height="30" />
-                </div>
-                <div class="item">
-                    <img src="images/donate2.jpg" alt="Shop image" width="500" height="30" />
-                </div>
-                <div class="item">
-                    <img src="images/donate3.jpg" alt="Shop image" width="500" height="30" />
-                </div>
-                <div class="item">
-                    <img src="images/f7.jpg" alt="Shop image" width="500" height="30" />
-                </div>
-                <div class="item">
-                    <img src="images/f6.jpg" alt="Shop image" width="500" height="30" />
-                </div>
 
 
             </div>
-            <a href="#carousal" class="left carousel-control" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a href="#carousal" class="right carousel-control" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-        </div>
+            <section>
 
-    </section>
-</div>
-<div class=container>
-    
-    <section>
+                <div class="jumbotron divs">
+                    <center>
+                        <h3>
+                            About
+                        </h3>
+
+                        <p>                        
+                            Our goal is to motivate people to come forward and share a small part of their lives with the others.
+                            This web application will assist those who wish to contribute towards the welfare of the world by sharing Food, Clothes, Educationals materials with people who need them.
+                        </p>
+                    </center>
+
+                </div>
+
+            </section>
+            <section>
+                <iframe frameborder="0" width="500" height="425" scrolling="no" src="http://databank.worldbank.org/data/embed/map-stats-/id/78f69842?dd=y&tb=y&sh=y&dw=y&pr=n&inf=y&zm=y&theme=darkGrey&bdrClr=rgb(177,186,170)&bdrStyle=solid&bdrWidth=0px"></iframe>
+                <iframe frameborder="0" width="500" height="425" scrolling="no" src="http://databank.worldbank.org/data/embed/pie-chart/id/f5561dbc?dd=y&tb=y&sh=y&dw=y&pr=n&inf=y&zm=y&xlbl=y&ylbl=y&legend=y&theme=darkGrey&bdrClr=rgb(177,186,170)&bdrStyle=solid&bdrWidth=0px"></iframe>
+            </section>
+            <section>
+
+                <div class="jumbotron" id="update-div" ng-controller="refresh_control" ng-show="messages">
+
+                    <div class="row">
+                        <div class='col-md-offset-2 col-md-8 text-center'>
+                            <h2>Latest Updates</h2>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-offset-2 col-md-8'>
+                            <div class="carousel" id="quote-carousel">
+                                <div class="carousel-inner">
+                                    <div class="item" ng-class="{active:!$index}" ng-repeat="m in messages">
+                                        <blockquote>
+                                            <p>{{m.message}}</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+    </div>
        
-        <div class="jumbotron page-header" ng-controller="refresh_control">
-            <h3>Latest Updates:</h3>
-            <h2 class="messages"><b>{{message}}</b></h2>            
-        </div>
+   
+    <div class="panel-footer">
+        <footer>
+            <ul class="list-inline text-center item">
+                <li>
 
-    </section>
-</div>
-<footer>
+                    <a href="https://www.linkedin.com/pub/bhaktisanglikar" width="50px" height="50px">
+                        <img src="images/linkedin1.png" alt="LinkedIn">
+                    </a>
+                    <a href="https://www.facebook.com/bhakti.sanglikar" width="50px" height="50px">
+                        <img src="images/facebook1.png" alt="Facebook">
+                    </a>
+                    <a href="https://github.com/bhaktis/Web-development-CS5610/tree/master/webdevessentials/final_project" width="50px" height="50px">
+                        <img src="images/github.png" alt="Project">
+                    </a>
+                    <a href="https://plus.google.com/u/0/106351422401216330728/posts" width="50px" height="50px">
+                        <img src="images/google_plus.png" alt="Facebook">
+                    </a>
 
-    <ul class="list-inline text-center item">
-        <li>
+                </li>
 
-            <a href="https://www.linkedin.com/pub/bhaktisanglikar" width="50px" height="50px">
-                <img src="images/linkedin.png" alt="LinkedIn">
-            </a>
-            <a href="https://www.facebook.com/bhakti.sanglikar" width="50px" height="50px">
-                <img src="images/facebook.png" alt="Facebook">
-            </a>
-
-        </li>
-
-    </ul>
-
-</footer>
-
-
-</div>
+            </ul>
+            <div class="container div-container center-block text-center">
+                <p><img src="images/7.jpg" alt="copyright" width="50px" height="50px"> Copyright (c) 2015 | Created by Bhakti Sanglikar | CS5610  </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

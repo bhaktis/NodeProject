@@ -1,3 +1,4 @@
 ﻿../story/whatisnext.htm?../final_project/story.txt                             What is Next?
 ../story/index.htm?../final_project/documentation/story.txt						Documentation
-http://sharepoint-cs5610nodejs.rhcloud.com/#/home                  Project
+http://sharepoint-cs5610nodejs.rhcloud.com/#/home                  Project 
+https://www.youtube.com/watch?v=KxAWYSMKMhg                        Project Video

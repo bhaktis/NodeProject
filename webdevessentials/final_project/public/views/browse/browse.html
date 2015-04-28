@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Browse Page </title>
+    <script>
+        $('#tblRow').click(function () {
+            console.log("inside");
+            // $(this).addClass('highlight').siblings().removeClass('highlight');
+        });
+    </script>
+    <style>
+        .selected {
+            color: #0094ff;
+        }
+
+        /*.commentrow {
+            border: 1px double;
+            width:500px;
+        }*/
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <div class="container">
+
+        <div>
+            <center>
+                <h2 class="title">Browse for nonprofit organisations</h2>
+                <p>
+                    Finding nonprofit organisaion by the cause they support.
+                </p>
+
+                <div>
+                    <b>Cause:</b>
+                    <input type="text" ng-model="search.cause" style="width:300px" />
+
+                    <button class="btn btn-warning" ng-click="submit(search)">Search</button>
+                </div>
+            </center>
+        </div>
+        <div>
+            <table class="table table-bordered table-hover" id="orgTbl" ng-show="organisations != null">
+                <thead>
+                    <tr>
+                        <th>Organisation</th>
+                        <th>Cause</th>
+                        <th>Location</th>
+                        <th>Requirement-Quantity</th>
+                        <th>Donate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="org in organisations" id="tblRow" ng-click="getreviews(org);" ng-class="{selected: org.name === selected}">
+                        <td>
+                            {{org.name}}
+                        </td>
+                        <td>{{org.cause}}</td>
+                        <td>{{org.location}}</td>
+                        <td>
+                            <ul ng-repeat="req in org.requirement">
+                                <li>{{req.category}}</li>
+                                <li>{{req.quantity}}</li>
+                            </ul>
+                        </td>
+                        <td><button class="btn btn-info" ng-click="donateto(org);">Donate</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container" ng-show="currentUser && selectedOrg">
+            <div>
+                <textarea ng-model="currentReview" ng-hide="myreview" style="width:80%;height:auto;" />
+                <button class="btn btn-info" ng-hide="myreview" ng-click="addreview();">Add review</button>
+                <div class="jumbotron" ng-show="myreview">
+                    <div class="row">
+                        <h3>My review</h3>
+                        <div class="col-sm-8">
+                            <p ng-hide="edit">{{myreview.text}}</p>
+                            <button class="btn btn-info" ng-hide="edit" ng-click="deletereview();">Delete</button>
+                            <textarea ng-show="edit" ng-model="myreview.text">{{myreview.text}} </textarea>
+                            <button class="btn btn-info" ng-hide="edit" ng-click="edit = true">Edit</button>
+                            <button class="btn btn-info" ng-show="edit" ng-click="addreview();">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul ng-repeat="rev in reviews" class="list-group">
+                <li class="list-group-item">
+                    <div class="jumbotron">
+                        <div class="row">
+                            <h3><b>{{rev.user}}</b></h3>
+                            <div class="col-sm-8">
+                                <p class="review">{{rev.text}} </p>
+                                <div>
+                                   
+                                    <table>
+                                        <tr class="commentrow" ng-repeat="com in rev.comments">
+                                            <td>{{com.user}}: {{com.text}} </td><td><hr /></td>
+                                        </tr>
+
+                                    </table>
+                                    <textarea ng-show="comment" ng-model="mycomment">{{mycomment}}</textarea>
+                                    <button class="btn btn-info" ng-hide="comment" ng-click="comment = true">Comment</button>
+                                    <button class="btn btn-info" ng-show="comment" ng-click="savecomment(rev.user,mycomment);">Save</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+    </div>
+</body>
+</html>

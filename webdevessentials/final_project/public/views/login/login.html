@@ -1,69 +1,86 @@
-<style>
-    h1 {
-        text-align: center;
-    }
-    .error {
-        color: red;
-        text-align:center;
-    }
-</style>
-<form ng-show="login">
-    <h1>Login</h1>
-    <table class="table table-responsive">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login Page</title>
+    <style>
+        .error{
+            color:red;
+        }        
+    </style>
+</head>
+<body>
+    <div class="alert alert-danger" role="alert" ng-show="error">
+        <button type="button" class="close" ng-show="error" data-dismiss="error" ng-click="error = null" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> {{error}}
+    </div>
+    <form ng-show="login">
+        <center><h1>Login</h1></center>
+        <table class="table table-responsive">
+            <tr>
+                <td>User name:</td>
+                <td><input ng-model="user.username" /> <br></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input ng-model="user.password" type="password" /></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-primary" ng-click="login(user)">Login</button>
+                <button class="btn btn-primary" ng-click="login = false">Register</button>
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button></td>
+            </tr>
+        </table>
+    </form>
 
-        <tr>
-            <td>User name:</td>
-            <td><input ng-model="user.username" /> <br></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input ng-model="user.password" type="password"/></td>
-        </tr>
-        <tr>
-            <td><button ng-click="login(user)">Login</button></td>
-            <td><button ng-click="viewRegister()">Register</button></td>
-        </tr>
-    </table>
-</form>
+    <form name="regForm" ng-hide="login">
+        <center> <h1> Register</h1></center>
+        
+        <table class="table table-responsive">
+            <tr>
+                <td>First name<span class="error">*</span></td>
+                <td><input ng-model="user.first" /> <br></td>
+            </tr>
+            <tr>
+                <td>Last name<span class="error">*</span></td>
+                <td><input ng-model="user.last" /> <br></td>
+            </tr>
+            <tr>
+                <td>User name <span class="error">*</span></td>
+                <td><input ng-model="user.username" required /><br /></td>
+            </tr>
+            <tr>
+                <td>Password <span class="error">*</span></td>
+                <td><input ng-model="user.password" type="password" required /></td>
+            </tr>
+            <tr>
+                <td> Confirm Password <span class="error">*</span></td>
+                <td>
+                    <input type="password" ng-model="user.password2" required />
+                </td>
+            </tr>
+            <tr>
+                <td> Email<span class="error">*</span></td>
+                <td>
+                    <input type="email" name="input" ng-model="user.email" required>
 
-<form name="regForm" ng-hide="login">
-    <h1> Register</h1>
-    <span class="error">{{error}}</span>
-    <table class="table table-responsive">
-        <tr>
-            <td>First name<span class="error">*</span></td>
-            <td><input ng-model="user.first" /> <br></td>
-        </tr>
-        <tr>
-            <td>Last name<span class="error">*</span></td>
-            <td><input ng-model="user.last" /> <br></td>
-        </tr>
-        <tr>
-            <td>User name <span class="error">*</span></td>
-            <td><input ng-model="user.username" required/><br /></td>
-        </tr>
-        <tr>
-            <td>Password <span class="error">*</span></td>
-            <td><input ng-model="user.password" type="password" required /></td>
-        </tr>
-        <tr>
-            <td> Confirm Password <span class="error">*</span></td>
-            <td>
-                <input type="password" ng-model="user.password2" required />
-            </td>
-        </tr>
+                </td>
+            </tr>
+            <tr>
+                <td> Phone <span class="error">*</span></td>
+                <td>
+                    <input type="number" value="0" min="0" max="9999999999" ng-model="user.contact" required />
+                </td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-primary" ng-click="registerUser(user)">Register</button>                    
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
 
-        <tr>
-            <td> Email<span class="error">*</span></td>
-            <td>
-                <input type="email" name="input" ng-model="user.email" required>              
 
-            </td>
-        </tr>
-        <tr>
-            <td><button ng-click="registerUser(user)">Register</button></td>
-        </tr>
-    </table>
-</form>
-</form>
+
+
 

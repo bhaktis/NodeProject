@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Organisation Login and Register Page</title>   
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+ 
+</head>
+<body>
+
+    <div class="alert alert-danger" role="alert" ng-show="error">
+        <button type="button" class="close" ng-show="error" data-dismiss="error" ng-click="error = null" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> {{error}}
+    </div>
+    <form ng-show="login">
+        <center><h1>Login</h1></center>
+        <table class="table table-responsive">
+            <tr>
+                <td>Organisation name:</td>
+                <td><input ng-model="organisation.username" /> <br></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input ng-model="organisation.password" type="password" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-primary" ng-click="login(organisation)">Login</button>
+                    <button class="btn btn-primary" ng-click="login = false">Register</button>
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <form name="regForm" ng-hide="login">
+        <center><h1> Register</h1></center>        
+        <table class="table table-responsive">
+            <tr>
+                <td>Organisation name<span class="error">*</span></td>
+                <td><input ng-model="organisation.name" /> <br></td>
+            </tr>
+            <tr>
+                <td>Cause<span class="error">*</span></td>
+                <td><input ng-model="organisation.cause" /> <br></td>
+            </tr>
+            <tr>
+                <td>Password <span class="error">*</span></td>
+                <td><input ng-model="organisation.password" type="password" required /></td>
+            </tr>
+            <tr>
+                <td> Confirm Password <span class="error">*</span></td>
+                <td>
+                    <input type="password" ng-model="organisation.password2" required />
+                </td>
+            </tr>
+            <tr>
+                <td> Phone <span class="error">*</span></td>
+                <td>
+                    <input type="number" value="0" min="0" max="9999999999" ng-model="organisation.contact" required />
+                </td>
+            </tr>
+            <tr>
+                <td> Email<span class="error">*</span></td>
+                <td>
+                    <input type="email" name="input" ng-model="organisation.email" required>
+                </td>
+            </tr>
+            <tr>
+                <td> location<span class="error">*</span></td>
+                <td>
+                    <input ng-model="organisation.location" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-primary" ng-click="register(organisation)">Register</button>
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
